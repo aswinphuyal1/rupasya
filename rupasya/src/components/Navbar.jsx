@@ -90,8 +90,38 @@ const Navbar = () => {
           className="flex flex col text-gray-600"
         >
           <div className="felx items-center gap-4 p-3"></div>
-          <img className="h-4 rotate-180" src={drop} alt="" />
+          <img className="h-6 rotate-180" src={menu} alt="" />
           <p>Back</p>
+        </div>
+        <div className="flex flex-col">
+          <NavLink
+            onClick={() => setvisible(false)}
+            className="py-2 pl-6 "
+            to="/"
+          >
+            HOME
+          </NavLink>
+          <NavLink
+            onClick={() => setvisible(false)}
+            className="py-2 pl-6 "
+            to="/collection"
+          >
+            COLLECTION
+          </NavLink>
+          <NavLink
+            onClick={() => setvisible(false)}
+            className="py-2 pl-6 "
+            to="/about"
+          >
+            ABOUT
+          </NavLink>
+          <NavLink
+            onClick={() => setvisible(false)}
+            className="py-2 pl-6"
+            to="/contact"
+          >
+            CONTACT
+          </NavLink>
         </div>
       </div>
     </div>
