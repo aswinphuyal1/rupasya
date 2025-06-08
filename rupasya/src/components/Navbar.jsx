@@ -1,78 +1,32 @@
-import React from "react";
-import logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
-
+import React from 'react'
+import  logo  from '../assets/logo.png'
+import {NavLink} from "react-router-dom"
+ import logo2 from "../assets/logo2.png" 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between py-5 px-8 bg-white shadow-md font-medium">
-      <div className="flex items-center gap-4">
-        <img src={logo} className="w-36" alt="Logo" />
-      </div>
-      <ul className="hidden sm:flex gap-8 text-sm text-gray-700">
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-bold"
-                : "hover:text-blue-600 transition"
-            }
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/collection"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-bold"
-                : "hover:text-blue-600 transition"
-            }
-          >
-            Collection
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-bold"
-                : "hover:text-blue-600 transition"
-            }
-          >
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-bold"
-                : "hover:text-blue-600 transition"
-            }
-          >
-            Contact
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/cart"
-            className={({ isActive }) =>
-              isActive
-                ? "text-blue-600 font-bold"
-                : "hover:text-blue-600 transition"
-            }
-          >
-            Cart
-          </NavLink>
-        </li>
-      </ul>
-      <div className="sm:hidden">{/* Mobile menu button can go here */}</div>
-    </nav>
-  );
-};
+    <div className="flex items-center justify-between py-5 font-medium">
+      <img src={logo2} className="w-36" alt="" />
 
-export default Navbar;
+      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+        <NavLink to="/" class="flex flex-col item-center gap-1">
+          <p>HOME</p>
+          <hr className="w-2/4 mx-auto border-none h-[1px] bg-gray-700" hidden />
+        </NavLink>
+        <NavLink to="/collection" class="flex flex-col item-center gap-1">
+          <p>COLLECTION</p>
+          <hr className="w-2/4 mx-auto border-none h-[1px] bg-gray-700" hidden />
+        </NavLink>
+        <NavLink to="/about" class="flex flex-col item-center gap-1">
+          <p>ABOUT</p>
+          <hr className="w-2/4 mx-auto border-none h-[1px] bg-gray-700" hidden />
+        </NavLink>
+        <NavLink to="/contact" class="flex flex-col item-center gap-1">
+          <p>CONTACT</p>
+          <hr className="w-2/4 mx-auto border-none h-[1px] bg-gray-700" hidden />
+        </NavLink>
+      </ul>
+    </div>
+  );
+}
+
+export default Navbar
