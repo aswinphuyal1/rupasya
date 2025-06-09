@@ -2,6 +2,7 @@ import React from "react";
 import makeup from "../assets/makeup.png";
 const Hero = () => {
   return (
+    
     <div>
       <div className="flex flex-col sm:flex-row border border-gray-400">
         {/* Hero left side */}
