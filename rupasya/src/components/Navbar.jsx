@@ -74,11 +74,10 @@ const Navbar = () => {
           onClick={() => setvisible(true)}
           src={menu}
           className="flex sm:hidden w-5 cursor-pointer"
-          alt="/"
+          alt=""
         />
       </div>
       <div
-
         className={`absolute top-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"
         } `}
@@ -87,11 +86,11 @@ const Navbar = () => {
           onClick={() => {
             setvisible(false);
           }}
-          className="flex  col text-gray-600"
+          className="flex col text-gray-600"
         >
           <div className="felx items-center gap-4 p-3"></div>
-          <img className="  h-6 rotate-180" src={menu} alt="" />
-          <p>Back</p>
+          <img className=" cursor-pointer  h-6 rotate-180" src={menu} alt="" />
+          <pc className="cursor-pointer">Back</pc>
         </div>
         <div className="flex flex-col">
           <NavLink
