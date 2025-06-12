@@ -22,6 +22,8 @@ useEffect(()=>
           breathe and your soul glow."
         </p>
       </div>
+      //{/* rendering products*/}
+      <div></div>
 
 
 
