@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Shopcontext } from '../context/Shopcontext'
 import Title from './Title';
+import Productitem from './Productitem';
 
 const Latestcolledtion = () => {
 
@@ -23,7 +24,17 @@ useEffect(()=>
         </p>
       </div>
       //{/* rendering products*/}
-      <div></div>
+      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ld:grid-cols-5 gap-4 gap-y-6'>
+{ 
+latestproduct.map((iteam,index )=>(
+  <Productitem key={index} id={iteam.id} image={iteam.image} name={iteam.name} price={iteam.price}/>
+)
+
+
+)
+
+}
+      </div>
 
 
 
