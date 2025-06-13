@@ -1,12 +1,28 @@
 import { createContext } from "react";
 //import {product} from "../assets/"
+
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
+   {/*Example products array with image, name, and price (using ESM-compatible paths)*/}
+  const products = [
+    {
+      id: 1,
+      name: "Lipstick",
+      price: 15,
+      image: "/src/assets/makeup.png",
+    },
+    {
+      id: 2,
+      name: "Foundation",
+      price: 25,
+      image: "/src/assets/product.jpg",
+    },
+  ];
 
   const value = {
-  //product,
+    products,
     currency,
     delivery_fee,
   };

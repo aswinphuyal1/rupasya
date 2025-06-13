@@ -1,5 +1,5 @@
 import React from "react";
-import makeup from "../assets/makeup.png";
+import makeup from "../assets/hero.png";
 const Hero = () => {
   return (
     <div>
