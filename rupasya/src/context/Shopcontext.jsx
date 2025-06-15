@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import Bestsheller from "../components/Bestsheller";
 //import {product} from "../assets/"
 
 export const Shopcontext = createContext();
@@ -18,6 +19,7 @@ const Shopcontextprovider = (props) => {
       name: "Foundation",
       price: 25,
       image: "/src/assets/product.jpg",
+      Bestsheller:false
     },
   ];
 
