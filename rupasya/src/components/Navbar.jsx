@@ -8,6 +8,7 @@ import menu from "../assets/menu.jpg";
 import drop from "../assets/drop.png";
 
 const Navbar = () => {
+  
   const [visible, setvisible] = useState(false);
   return (
     <div className="flex items-center justify-between py-5 font-medium">
