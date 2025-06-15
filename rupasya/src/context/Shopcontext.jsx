@@ -5,13 +5,13 @@ export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
-   {/*Example products array with image, name, and price (using ESM-compatible paths)*/}
   const products = [
     {
       id: 1,
       name: "Lipstick",
       price: 15,
       image: "/src/assets/makeup.png",
+      Bestsheller: true,
     },
     {
       id: 2,
@@ -26,6 +26,7 @@ const Shopcontextprovider = (props) => {
     currency,
     delivery_fee,
   };
+
   return (
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
   );
