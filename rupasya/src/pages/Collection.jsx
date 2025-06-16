@@ -36,9 +36,28 @@ const Collection = () => {
           } sm:block`}
         >
           <p className="mb-3 text-sm font-medium">CATEGORY</p>
-          <div className="flex felx-col gap-2 text-sm font-light text-gray-700">
+          <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
+            <p className="flex flex gap-2">
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Makeup Products"}
+              />
+              Makeup Products
+            </p>
+
             <p className="flex gap-2">
-              <input type="checkbox" />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Skincare Products"}
+              />
+              Skincare Products
+            </p>
+
+            <p className="flex gap-2">
+              <input className="w-3" type="checkbox" value={"Lip & Eye Care"} />
+              Lip & Eye Care
             </p>
           </div>
         </div>
