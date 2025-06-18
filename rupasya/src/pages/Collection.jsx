@@ -3,24 +3,6 @@ import { Shopcontext } from "../context/Shopcontext";
 import drop from "../assets/drop.png";
 import Title from "../components/Title";
 import Productitem from "../components/Productitem";
-const products = [
-  {
-    id: 1,
-    name: "Lipstick",
-    price: 15,
-    image: "/src/assets/makeup.png",
-    Bestsheller: true,
-   
-  },
-  {
-    id: 2,
-    name: "Foundation",
-    price: 25,
-    image: "/src/assets/product.jpg",
-    Bestsheller: false,
-  },
-];
-
 const Collection = () => {
   const { products } = useContext(Shopcontext);
   const [showfilter, setshowfilter] = useState(false);
@@ -30,41 +12,39 @@ const Collection = () => {
 
   const togglecategory = (e) => {
     if (category.includes(e.target.value)) {
-      setcategory((prev) => prev.filter((iteam) => iteam !== e.target.value));
+      setcategory((prev) => prev.filter((item) => item !== e.target.value));
     } else {
       setcategory((prev) => [...prev, e.target.value]);
     }
   };
-  const togglesubcategory = () => {
-    if (category.includes(e.target.value)) {
-      setsubcategory((prev) => prev.filter((iteam) => iteam != e.target.value));
+  const togglesubcategory = (e) => {
+    if (subcategory.includes(e.target.value)) {
+      setsubcategory((prev) => prev.filter((item) => item !== e.target.value));
     } else {
-      subcategory((prev) => [...prev.e.target.value]);
+      setsubcategory((prev) => [...prev, e.target.value]);
     }
   };
 
-  const applyfilter= ()=>{
-    let productcopy =products.slice();
-    if(category.length> 0 )
-      {
-productcopy=productcopy.filter(iteam=> category.includes(iteam.category));
-      }
-    setfilterproduct(productcopy)
-  }
+  const applyfilter = () => {
+    let productcopy = products.slice();
+    if (category.length > 0) {
+      productcopy = productcopy.filter((item) =>
+        category.includes(item.category)
+      );
+    }
+    if (subcategory.length > 0) {
+      productcopy = productcopy.filter((item) =>
+        subcategory.includes(item.subcategory)
+      );
+    }
+    setfilterproduct(productcopy);
+  };
+
+
 
   useEffect(() => {
-    setfilterproduct(products);
-  }, []);
-
-
-
-  useEffect(()=>
-  {
-applyfilter();
-  },[category,subcategory])
-  
-
-
+    applyfilter();
+  }, [category, subcategory]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t ">
@@ -136,7 +116,7 @@ applyfilter();
                 className="w-3"
                 type="checkbox"
                 value={"MEN"}
-                onClick={togglecategory  }
+                onClick={togglecategory}
               />
               MEN
             </p>
@@ -146,7 +126,7 @@ applyfilter();
                 className="w-3"
                 type="checkbox"
                 value={"WOMEN"}
-                onClick={togglesubcategory}
+                onChange={togglesubcategory}
               />
               WOMEN
             </p>
@@ -156,7 +136,7 @@ applyfilter();
                 className="w-3"
                 type="checkbox"
                 value={"PREMIUM"}
-                onClick={togglesubcategory}
+                onChange={togglesubcategory}
               />
               PREMIUM
             </p>

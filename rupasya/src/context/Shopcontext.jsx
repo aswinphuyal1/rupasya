@@ -14,6 +14,7 @@ const Shopcontextprovider = (props) => {
       image: "/src/assets/makeup.png",
       Bestsheller: true,
       category: "Makeup Products",
+      subcategory: "BASIC",
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ const Shopcontextprovider = (props) => {
       image: "/src/assets/product.jpg",
       Bestsheller: false,
       category: "Skincare Products",
+      subcategory: "PREMIUM",
     },
   ];
 
