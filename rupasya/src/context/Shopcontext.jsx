@@ -13,13 +13,15 @@ const Shopcontextprovider = (props) => {
       price: 15,
       image: "/src/assets/makeup.png",
       Bestsheller: true,
+      category: "Makeup Products",
     },
     {
       id: 2,
       name: "Foundation",
       price: 25,
       image: "/src/assets/product.jpg",
-      Bestsheller:false
+      Bestsheller: false,
+      category: "Skincare Products",
     },
   ];
 

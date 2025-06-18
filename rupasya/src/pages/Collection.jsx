@@ -10,6 +10,7 @@ const products = [
     price: 15,
     image: "/src/assets/makeup.png",
     Bestsheller: true,
+   
   },
   {
     id: 2,
@@ -24,14 +25,46 @@ const Collection = () => {
   const { products } = useContext(Shopcontext);
   const [showfilter, setshowfilter] = useState(false);
   const [filterproduct, setfilterproduct] = useState([]);
-  const [category,setcategory]=useState([])
-  const [subcategory,setsubcategory]= useState([]);
+  const [category, setcategory] = useState([]);
+  const [subcategory, setsubcategory] = useState([]);
 
-  
+  const togglecategory = (e) => {
+    if (category.includes(e.target.value)) {
+      setcategory((prev) => prev.filter((iteam) => iteam !== e.target.value));
+    } else {
+      setcategory((prev) => [...prev, e.target.value]);
+    }
+  };
+  const togglesubcategory = () => {
+    if (category.includes(e.target.value)) {
+      setsubcategory((prev) => prev.filter((iteam) => iteam != e.target.value));
+    } else {
+      subcategory((prev) => [...prev.e.target.value]);
+    }
+  };
+
+  const applyfilter= ()=>{
+    let productcopy =products.slice();
+    if(category.length> 0 )
+      {
+productcopy=productcopy.filter(iteam=> category.includes(iteam.category));
+      }
+    setfilterproduct(productcopy)
+  }
 
   useEffect(() => {
     setfilterproduct(products);
   }, []);
+
+
+
+  useEffect(()=>
+  {
+applyfilter();
+  },[category,subcategory])
+  
+
+
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t ">
@@ -63,6 +96,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Makeup Products"}
+                onChange={togglecategory}
               />
               Makeup Products
             </label>
@@ -72,12 +106,18 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Skincare Products"}
+                onChange={togglecategory}
               />
               Skincare Products
             </label>
 
             <label className="flex items-center gap-2">
-              <input className="w-3" type="checkbox" value={"Lip & Eye Care"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Lip & Eye Care"}
+                onChange={togglecategory}
+              />
               Lip & Eye Care
             </label>
           </div>
@@ -92,21 +132,41 @@ const Collection = () => {
           <p className="mb-3 text-sm font-medium">SUB CATEGORY</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"MEN"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"MEN"}
+                onClick={togglecategory  }
+              />
               MEN
             </p>
 
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"WOMEN"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"WOMEN"}
+                onClick={togglesubcategory}
+              />
               WOMEN
             </p>
 
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"PREMIUM"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"PREMIUM"}
+                onClick={togglesubcategory}
+              />
               PREMIUM
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"BASIC"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"BASIC"}
+                onClick={togglesubcategory}
+              />
               BASIC
             </p>
           </div>
