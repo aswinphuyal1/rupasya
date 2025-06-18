@@ -51,9 +51,10 @@ switch (sorttype) {
     setfilterproduct(fpCopy.sort((a, b) => a.price - b.price));
     break;
   case "high to low":
-    setfilterproduct(fbCopy.sort((a, b) => (b.price - a.price)));
+    setfilterproduct(fpCopy.sort((a, b) => (b.price - a.price)));
     break;
-    default:applyfilter();
+    default:
+      applyfilter();
     break;
 
 }
