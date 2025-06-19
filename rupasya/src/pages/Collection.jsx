@@ -83,6 +83,7 @@ switch (sorttype) {
             src={drop}
             alt="/"
           />
+          
         </p>
         {/*category filter */}
         {/* <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showfilter ? ' ':'hidden'}sm:block`}> */}
