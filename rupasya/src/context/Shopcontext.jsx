@@ -1,11 +1,9 @@
 import { createContext } from "react";
-import Bestsheller from "../components/Bestsheller";
-//import {product} from "../assets/"
 
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
-  const delivery_fee = 10;
+  const delivery_fee = 75;
   const products = [
     {
       id: 1,

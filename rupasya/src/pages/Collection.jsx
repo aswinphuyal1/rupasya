@@ -16,6 +16,7 @@ const Collection = () => {
       setcategory((prev) => prev.filter((item) => item !== e.target.value));
     } else {
       setcategory((prev) => [...prev, e.target.value]);
+      // ... uses the preeviouus value
     }
   };
   const togglesubcategory = (e) => {

@@ -11,7 +11,7 @@ event.preventDefault()
         Get upto 30% discount on your first product
       </p>
       <p className="text-gray-400 mt-3 ">
-        This is some light gray text with a top margin.
+        Become a happy customer of Rupasya
       </p>
       <form onSubmit={onubmithandler} className='w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3'>
         <input className='w-full sm:flex-1 outline-none' type="email" placeholder='Enter your email' required/>
