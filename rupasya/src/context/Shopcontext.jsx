@@ -1,10 +1,11 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
   const delivery_fee = 75;
-const[]
+const[search,setsearch]=useState('')
+const [showsearch,setshowserach] =useState(true)
   const products = [
     {
       id: 1,
@@ -27,9 +28,10 @@ const[]
   ];
 
   const value = {
-    products,
+    products, 
     currency,
     delivery_fee,
+    search,setsearch,showsearch,setshowserach,
   };
 
   return (
