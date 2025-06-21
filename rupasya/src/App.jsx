@@ -17,8 +17,8 @@ const App = () => {
   return (
     <div>
       <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-        <Navbar /> 
-              <Searchbar/>
+        <Navbar />
+        <Searchbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -28,9 +28,9 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/order" element={<Order />} />
           <Route path="/placeorder" element={<Placeorder />} />
-          <Route path="/product:productID" element={<Product />} />
+          <Route path="/product/:productID" element={<Product />} />
         </Routes>
-        <Fotter/>
+        <Fotter />
       </div>
     </div>
   );
