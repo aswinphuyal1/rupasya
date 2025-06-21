@@ -4,7 +4,7 @@ import drop from "../assets/drop.png";
 import Title from "../components/Title";
 import Productitem from "../components/Productitem";
 const Collection = () => {
-  const { products } = useContext(Shopcontext);
+  const { products, search, showsearch } = useContext(Shopcontext);
   const [showfilter, setshowfilter] = useState(false);
   const [filterproduct, setfilterproduct] = useState([]);
   const [category, setcategory] = useState([]);
@@ -29,6 +29,13 @@ const Collection = () => {
 
   const applyfilter = () => {
     let productcopy = products.slice();
+
+    if (search) {
+      productcopy = productcopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
     if (category.length > 0) {
       productcopy = productcopy.filter((item) =>
         category.includes(item.category)
@@ -42,33 +49,28 @@ const Collection = () => {
     setfilterproduct(productcopy);
   };
 
-
-
-const sortproduct =()=>
-{
-  let fpCopy = filterproduct.slice();
-switch (sorttype) {
-  case "low-high":
-    setfilterproduct(fpCopy.sort((a, b) => a.price - b.price));
-    break;
-  case "high to low":
-    setfilterproduct(fpCopy.sort((a, b) => (b.price - a.price)));
-    break;
-    default:
-      applyfilter();
-    break;
-
-}
-}
+  const sortproduct = () => {
+    let fpCopy = filterproduct.slice();
+    switch (sorttype) {
+      case "low-high":
+        setfilterproduct(fpCopy.sort((a, b) => a.price - b.price));
+        break;
+      case "high to low":
+        setfilterproduct(fpCopy.sort((a, b) => b.price - a.price));
+        break;
+      default:
+        applyfilter();
+        break;
+    }
+  };
 
   useEffect(() => {
     applyfilter();
-  }, [category, subcategory]);
+  }, [category, subcategory, search, showsearch]);
 
-  useEffect(()=>
-  {
+  useEffect(() => {
     sortproduct();
-  },[sorttype]);
+  }, [sorttype]);
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t ">
       {/* filter*/}
@@ -84,7 +86,6 @@ switch (sorttype) {
             src={drop}
             alt="/"
           />
-          
         </p>
         {/*category filter */}
         {/* <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showfilter ? ' ':'hidden'}sm:block`}> */}
@@ -182,7 +183,10 @@ switch (sorttype) {
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title text1={"ALL"} text2={"COLLECTION"} />
           {/* Product sort*/}
-          <select onChange={(e)=>setsorttype(e.target.value)} className="border-2 border-gray-300 text-sm px-2">
+          <select
+            onChange={(e) => setsorttype(e.target.value)}
+            className="border-2 border-gray-300 text-sm px-2"
+          >
             <option value="relavent">Relavent</option>
             <option value="low-high">Low to high</option>
             <option value="high to low">High to low</option>
