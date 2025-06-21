@@ -15,6 +15,11 @@ a.active hr
     font-weight: 400;
     font-style: normal;
   }
+  //scrool dar remove hunxa
+  ::-webkit-scrollbar
+  {
+display:none;
+  }
   
   @media (max-width:640px)
   {

@@ -12,10 +12,12 @@ const [showsearch,setshowserach] =useState(false)
       name: "Lipstick",
       price: 15,
       image: ["/src/assets/makeup.png"], //"/src/assets/2.png"
-      
+
       Bestsheller: true,
       category: "Makeup Products",
       subcategory: "BASIC",
+      decription:
+        "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
     },
     {
       id: 2,
@@ -25,6 +27,8 @@ const [showsearch,setshowserach] =useState(false)
       Bestsheller: false,
       category: "Skincare Products",
       subcategory: "PREMIUM",
+      decription:
+        "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
     },
   ];
 

@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Shopcontext } from "../context/Shopcontext";
 import review from "../assets/reviewlogo.png"
+import halfreview from "../assets/halfrevuewsatar.png";
 const Poduct = () => {
   const { productID } = useParams();
-  const { products } = useContext(Shopcontext);
+  const { products, currency, delivery_fee } = useContext(Shopcontext);
   const [productdata, setproductdata] = useState(false);
   const [image, setimage] = useState("");
 
@@ -50,9 +51,15 @@ const Poduct = () => {
             <img src={review} alt="" className="w-3 5" />
             <img src={review} alt="" className="w-3 5" />
             <img src={review} alt="" className="w-3 5" />
-            <img src={review} alt="" className="w-3 5" />
+            <img src={halfreview} alt="" className="w-3 5" />
+            <p className="pl-2">
+              122
+
+            </p>
 
           </div>
+          <p className="mt-5 text-3xl font-medium">{currency}{productdata.price}</p>
+          <p className="mt-5 text-gray-950 md:w-4/5">{productdata.decription}</p>
         </div>
       </div>
     </div>
