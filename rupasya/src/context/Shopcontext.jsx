@@ -11,7 +11,8 @@ const [showsearch,setshowserach] =useState(false)
       id: 1,
       name: "Lipstick",
       price: 15,
-      image: "/src/assets/makeup.png",
+      image: ["/src/assets/makeup.png"], //"/src/assets/2.png"
+      
       Bestsheller: true,
       category: "Makeup Products",
       subcategory: "BASIC",
@@ -20,7 +21,7 @@ const [showsearch,setshowserach] =useState(false)
       id: 2,
       name: "Foundation",
       price: 25,
-      image: "/src/assets/product.jpg",
+      image: ["/src/assets/product.jpg"],
       Bestsheller: false,
       category: "Skincare Products",
       subcategory: "PREMIUM",
