@@ -110,6 +110,7 @@ const Placeorder = () => {
               onClick={() => navigate("")}
               className="bg-black text-white text-sm my-8 px-8 py-3 justify-start"
             >
+              
               PROCEED TO PAYMENT
             </button>
           </div>
