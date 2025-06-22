@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Shopcontext } from "../context/Shopcontext";
 import Title from "../components/Title";
+import bin from "../assets/bin.png";
 
 const Cart = () => {
-  const { products, currency, delivery_fee, cartiteams } =
+  const { products, currency, delivery_fee, cartiteams, updatequantity } =
     useContext(Shopcontext);
 
   const [cartdata, setcartdata] = useState([]);
@@ -51,11 +52,27 @@ const Cart = () => {
                       {productdata?.name}
                     </p>
                     <div className="flex items-center gap-5 mt-2">
-                      <p>{currency}{productdata.price}</p>
-                      <p className='px-2 sm:px-3 sm:py-1 border bg-slate-50'>{item.size}</p>
+                      <p>
+                        {currency}
+                        {productdata.price}
+                      </p>
+                      <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50">
+                        {item.size}
+                      </p>
                     </div>
                   </div>
                 </div>
+                <input
+                  className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 "
+                  type="number"
+                  min={1}
+                  defaultValue={item.quantity}
+                />
+                <img
+                  onClick={() => updatequantity(item.id, item.size, 0)}
+                  className="w-9 sm:w-5 cursor-pointer"
+                  src={bin}
+                />
               </div>
             );
           })}

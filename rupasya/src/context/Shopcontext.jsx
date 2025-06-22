@@ -9,6 +9,24 @@ const Shopcontextprovider = (props) => {
   const [showsearch, setshowserach] = useState(false);
   const [cartiteams, setcartiteams] = useState({});
 
+
+  const updatequantity = (iteamid, size, quantity) => {
+    let cartdata = structuredClone(cartiteams);
+    if (cartdata[iteamid] && cartdata[iteamid][size] !== undefined) {
+      if (quantity > 0) {
+        cartdata[iteamid][size] = quantity;
+      } else {
+        delete cartdata[iteamid][size];
+        // If no sizes left for this product, remove the product key
+        if (Object.keys(cartdata[iteamid]).length === 0) {
+          delete cartdata[iteamid];
+        }
+      }
+      setcartiteams(cartdata);
+    }
+  };
+
+
   const addtocart = async (iteamid, size) => {
     if (!size) {
       toast.error("Select size");
@@ -123,8 +141,11 @@ const Shopcontextprovider = (props) => {
     setshowserach,
     cartiteams,
     addtocart,
-    getcartcount
+    getcartcount,
+    updatequantity
   };
+
+
 
   return (
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
