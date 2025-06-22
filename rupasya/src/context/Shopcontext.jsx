@@ -9,7 +9,6 @@ const Shopcontextprovider = (props) => {
   const [showsearch, setshowserach] = useState(false);
   const [cartiteams, setcartiteams] = useState({});
 
-
   const updatequantity = (iteamid, size, quantity) => {
     let cartdata = structuredClone(cartiteams);
     if (cartdata[iteamid] && cartdata[iteamid][size] !== undefined) {
@@ -25,7 +24,6 @@ const Shopcontextprovider = (props) => {
       setcartiteams(cartdata);
     }
   };
-
 
   const addtocart = async (iteamid, size) => {
     if (!size) {
@@ -48,26 +46,34 @@ const Shopcontextprovider = (props) => {
     setcartiteams(cartdata);
   };
 
-  const getcartcount =()=>
-  {
-    let totalcount =0;
-    for(const iteams in cartiteams)
-    {
-      for( const item in cartiteams[iteams])
-        try{
-      if(cartiteams[iteams][item]>0)
-      {
-        totalcount += cartiteams[iteams][item];
-      }
-      }
-      catch(error)
-      {
-
-      }
+  const getcartcount = () => {
+    let totalcount = 0;
+    for (const iteams in cartiteams) {
+      for (const item in cartiteams[iteams])
+        try {
+          if (cartiteams[iteams][item] > 0) {
+            totalcount += cartiteams[iteams][item];
+          }
+        } catch (error) {}
     }
     return totalcount;
+  };
 
-  }
+  // Fix getcartamount to be synchronous and correct the variable name typo
+  const getcartamount = () => {
+    let totalamount = 0;
+    for (const iteams in cartiteams) {
+      let iteainfo = products.find((product) => product.id == iteams);
+      for (const item in cartiteams[iteams]) {
+        try {
+          if (cartiteams[iteams][item] > 0) {
+            totalamount += iteainfo.price * cartiteams[iteams][item];
+          }
+        } catch (error) {}
+      }
+    }
+    return totalamount;
+  };
   const products = [
     {
       id: 1,
@@ -142,10 +148,9 @@ const Shopcontextprovider = (props) => {
     cartiteams,
     addtocart,
     getcartcount,
-    updatequantity
+    updatequantity,
+    getcartamount,
   };
-
-
 
   return (
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
