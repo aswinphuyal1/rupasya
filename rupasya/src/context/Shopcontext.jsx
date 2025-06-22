@@ -16,6 +16,7 @@ const [showsearch,setshowserach] =useState(false)
       Bestsheller: true,
       category: "Makeup Products",
       subcategory: "BASIC",
+      size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
     },
@@ -27,6 +28,7 @@ const [showsearch,setshowserach] =useState(false)
       Bestsheller: false,
       category: "Skincare Products",
       subcategory: "PREMIUM",
+      size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
     },
