@@ -5,40 +5,51 @@ export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
   const delivery_fee = 75;
-const[search,setsearch]=useState('')
-const [showsearch,setshowserach] =useState(false)
-const[cartiteams,setcartiteams]=useState({});
+  const [search, setsearch] = useState("");
+  const [showsearch, setshowserach] = useState(false);
+  const [cartiteams, setcartiteams] = useState({});
 
-const addtocart=async (iteamid,size)=>
-{
-  if(!size)
-  {
-    toast.error("Select size")
-    return;
-  }
-let cartdata=structuredClone(cartiteams)
-if(cartdata[iteamid])
-  {if(cartdata[iteamid][size])
-  {
-    cartdata[iteamid][size]=cartdata[iteamid][size]+1
-  }
-  else
-  {
+  const addtocart = async (iteamid, size) => {
+    if (!size) {
+      toast.error("Select size");
+      return;
+    }
+    let cartdata = structuredClone(cartiteams);
+    if (cartdata[iteamid]) {
+      if (cartdata[iteamid][size]) {
+        cartdata[iteamid][size] = cartdata[iteamid][size] + 1;
+      } else {
+        {
+          cartdata[iteamid][size] = 1;
+        }
+      }
+    } else {
+      cartdata[iteamid] = {};
+      cartdata[iteamid][size] = 1;
+    }
+    setcartiteams(cartdata);
+  };
 
-    
+  const getcartcount =()=>
+  {
+    let totalcount =0;
+    for(const iteams in cartiteams)
     {
-      cartdata[iteamid][size]=1;
-  }
-  }
-  
-  }
-  else{
-    cartdata[iteamid]={};
-    cartdata[iteamid][size]=1;
-  }
-  setcartiteams(cartdata);
+      for( const item in cartiteams[iteams])
+        try{
+      if(cartiteams[iteams][item]>0)
+      {
+        totalcount += cartiteams[iteams][item];
+      }
+      }
+      catch(error)
+      {
 
-}
+      }
+    }
+    return totalcount;
+
+  }
   const products = [
     {
       id: 1,
@@ -91,17 +102,21 @@ if(cartdata[iteamid])
     },
   ];
 
-  useEffect(()=>
-  {
-console.log(cartiteams)
-  },[cartiteams])
+  useEffect(() => {
+    console.log(cartiteams);
+  }, [cartiteams]);
 
   const value = {
-    products, 
+    products,
     currency,
     delivery_fee,
-    search,setsearch,showsearch,setshowserach,
-    cartiteams,addtocart
+    search,
+    setsearch,
+    showsearch,
+    setshowserach,
+    cartiteams,
+    addtocart,
+    getcartcount
   };
 
   return (
@@ -109,4 +124,3 @@ console.log(cartiteams)
   );
 };
 export default Shopcontextprovider;
-

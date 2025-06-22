@@ -10,13 +10,12 @@ import { Shopcontext } from "../context/Shopcontext";
 
 const Navbar = () => {
   const [visible, setvisible] = useState(false);
-  const { setshowserach } = useContext(Shopcontext);
-  const navigate=useNavigate();
-  const handleSearchClick=()=>
-  {
+  const { setshowserach, getcartcount } = useContext(Shopcontext);
+  const navigate = useNavigate();
+  const handleSearchClick = () => {
     setshowserach(true);
-    navigate("/collection")
-  }
+    navigate("/collection");
+  };
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -72,7 +71,7 @@ const Navbar = () => {
         <Link to="/cart" className="relative">
           <img src={carticno} className="w-5 min-w-5" alt="" />
           <p className="absolute right-[-5px] bottom-[-5px] w-4 h-4 bg-black text-white rounded-full text-[11px] flex items-center justify-center">
-            10
+            {getcartcount()}
           </p>
         </Link>
         <img
