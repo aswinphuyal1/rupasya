@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Shopcontext } from "../context/Shopcontext";
-import review from "../assets/reviewlogo.png"
+import review from "../assets/reviewlogo.png";
 import halfreview from "../assets/halfrevuewsatar.png";
 const Poduct = () => {
   const { productID } = useParams();
   const { products, currency, delivery_fee } = useContext(Shopcontext);
   const [productdata, setproductdata] = useState(false);
   const [image, setimage] = useState("");
+  const [size, setsize] = useState("");
 
   const fetchproductdata = async () => {
     const found = products.find((item) => item.id == productID);
@@ -52,26 +53,36 @@ const Poduct = () => {
             <img src={review} alt="" className="w-3 5" />
             <img src={review} alt="" className="w-3 5" />
             <img src={halfreview} alt="" className="w-3 5" />
-            <p className="pl-2">
-              122
-
-            </p>
-
+            <p className="pl-2">122</p>
           </div>
-          <p className="mt-5 text-3xl font-medium">{currency}{productdata.price}</p>
-          <p className="mt-5 text-gray-950 md:w-4/5">{productdata.decription}</p>
+          <p className="mt-5 text-3xl font-medium">
+            {currency}
+            {productdata.price}
+          </p>
+          <p className="mt-5 text-gray-950 md:w-4/5">
+            {productdata.decription}
+          </p>
           <div className="flex flex-col gap-4 my-8">
             <p>Select size</p>
             <div className="flex gap-2">
-              {
-                productdata.size.map((item,index)=>(
-                  <button className={`border py-2 px-4 bg-gray-400`} key={index}>{item}</button>
-                ))
-              }
-
+              {productdata.size.map((item, index) => (
+                <button
+                  onClick={() => setsize(item)}
+                  className={`border py-2 px-4 bg-gray-100 ${
+                    item == size ? "border-black" : ""
+                  }`}
+                  key={index}
+                >
+                  {item}
+                </button>
+              ))}
             </div>
-
           </div>
+          <div className="bg-black text-white px-8 py-3 text-sm active:bg-gray-400 w-fit">
+            {"ADD TO CART"}
+          </div>
+          <hr className="mt-8 sm:w-4/5" />
+          <div className=""></div>
         </div>
       </div>
     </div>
