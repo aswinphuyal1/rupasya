@@ -105,6 +105,8 @@ const Poduct = () => {
           </p>
         </div>
       </div>
+      {/* display realated products */}
+      
     </div>
   ) : (
     <div className="opacity-0"></div>
