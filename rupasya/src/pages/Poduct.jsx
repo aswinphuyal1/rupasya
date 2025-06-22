@@ -82,7 +82,27 @@ const Poduct = () => {
             {"ADD TO CART"}
           </div>
           <hr className="mt-8 sm:w-4/5" />
-          <div className=""></div>
+          <div className="text-sm text-gray-500 mt-5 felx felx-col gap-1">
+            <p>✔️ Guaranteed 100% Original Makeup Product.</p>
+            <p>🚚 Cash on Delivery available for your convenience.</p>
+            <p>🔄 Hassle-free Return & Exchange within 7 days of delivery.</p>
+          </div>
+        </div>
+      </div>
+      {/* product description&&review section*/}
+      <div className="mt-10">
+        <div className="flex">
+          <b className="border px-5 py-3 text-sm">Description</b>
+          <p className="border px-5 py-3 text-sm">Reviews</p>
+        </div>
+        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+          <p>🌿 Deep Moisturizing Cream</p>
+          <p>
+            Nourish your skin with our rich, hydrating formula that locks in
+            moisture and leaves your skin soft, smooth, and glowing all day.
+            Perfect for dry and sensitive skin. ✔️ Lightweight & Non-Greasy ✔️
+            Suitable for All Skin Types ✔️ Dermatologically Tested
+          </p>
         </div>
       </div>
     </div>
