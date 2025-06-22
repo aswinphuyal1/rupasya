@@ -32,6 +32,30 @@ const [showsearch,setshowserach] =useState(false)
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
     },
+    {
+      id: 3,
+      name: "2",
+      price: 25,
+      image: ["/src/assets/product.jpg"],
+      Bestsheller: false,
+      category: "Skincare Products",
+      subcategory: "PREMIUM",
+      size: ["200ml", "250ml", "500ml", "1L"],
+      decription:
+        "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+    },
+    {
+      id: 4,
+      name: "3",
+      price: 25,
+      image: ["/src/assets/product.jpg"],
+      Bestsheller: false,
+      category: "Skincare Products",
+      subcategory: "PREMIUM",
+      size: ["200ml", "250ml", "500ml", "1L"],
+      decription:
+        "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+    },
   ];
 
   const value = {

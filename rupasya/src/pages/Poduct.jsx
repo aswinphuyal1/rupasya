@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Shopcontext } from "../context/Shopcontext";
 import review from "../assets/reviewlogo.png";
 import halfreview from "../assets/halfrevuewsatar.png";
+import Relatedproducts from "../components/Relatedproducts";
 const Poduct = () => {
   const { productID } = useParams();
   const { products, currency, delivery_fee } = useContext(Shopcontext);
@@ -106,7 +107,7 @@ const Poduct = () => {
         </div>
       </div>
       {/* display realated products */}
-      
+      <Relatedproducts category={productdata.category} subcategory={productdata.subcategory} currentid={productdata.id}/>
     </div>
   ) : (
     <div className="opacity-0"></div>
