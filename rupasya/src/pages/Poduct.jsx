@@ -6,7 +6,8 @@ import halfreview from "../assets/halfrevuewsatar.png";
 import Relatedproducts from "../components/Relatedproducts";
 const Poduct = () => {
   const { productID } = useParams();
-  const { products, currency, delivery_fee } = useContext(Shopcontext);
+  const { products, currency, delivery_fee, addtocart } =
+    useContext(Shopcontext);
   const [productdata, setproductdata] = useState(false);
   const [image, setimage] = useState("");
   const [size, setsize] = useState("");
@@ -79,7 +80,10 @@ const Poduct = () => {
               ))}
             </div>
           </div>
-          <div className="bg-black text-white px-8 py-3 text-sm active:bg-gray-400 w-fit">
+          <div
+            onClick={() => addtocart(productdata.id,size)}
+            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-400 w-fit"
+          >
             {"ADD TO CART"}
           </div>
           <hr className="mt-8 sm:w-4/5" />
@@ -107,7 +111,11 @@ const Poduct = () => {
         </div>
       </div>
       {/* display realated products */}
-      <Relatedproducts category={productdata.category} subcategory={productdata.subcategory} currentid={productdata.id}/>
+      <Relatedproducts
+        category={productdata.category}
+        subcategory={productdata.subcategory}
+        currentid={productdata.id}
+      />
     </div>
   ) : (
     <div className="opacity-0"></div>

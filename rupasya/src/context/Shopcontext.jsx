@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
@@ -6,6 +7,38 @@ const Shopcontextprovider = (props) => {
   const delivery_fee = 75;
 const[search,setsearch]=useState('')
 const [showsearch,setshowserach] =useState(false)
+const[cartiteams,setcartiteams]=useState({});
+
+const addtocart=async (iteamid,size)=>
+{
+  if(!size)
+  {
+    toast.error("Select size")
+    return;
+  }
+let cartdata=structuredClone(cartiteams)
+if(cartdata[iteamid])
+  {if(cartdata[iteamid][size])
+  {
+    cartdata[iteamid][size]=cartdata[iteamid][size]+1
+  }
+  else
+  {
+
+    
+    {
+      cartdata[iteamid][size]=1;
+  }
+  }
+  
+  }
+  else{
+    cartdata[iteamid]={};
+    cartdata[iteamid][size]=1;
+  }
+  setcartiteams(cartdata);
+
+}
   const products = [
     {
       id: 1,
@@ -35,7 +68,7 @@ const [showsearch,setshowserach] =useState(false)
     {
       id: 3,
       name: "2",
-      price: 25,
+      price: 50,
       image: ["/src/assets/product.jpg"],
       Bestsheller: false,
       category: "Skincare Products",
@@ -47,7 +80,7 @@ const [showsearch,setshowserach] =useState(false)
     {
       id: 4,
       name: "3",
-      price: 25,
+      price: 609,
       image: ["/src/assets/product.jpg"],
       Bestsheller: false,
       category: "Skincare Products",
@@ -58,11 +91,17 @@ const [showsearch,setshowserach] =useState(false)
     },
   ];
 
+  useEffect(()=>
+  {
+console.log(cartiteams)
+  },[cartiteams])
+
   const value = {
     products, 
     currency,
     delivery_fee,
     search,setsearch,showsearch,setshowserach,
+    cartiteams,addtocart
   };
 
   return (
