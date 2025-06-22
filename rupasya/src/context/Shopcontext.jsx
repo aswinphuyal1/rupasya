@@ -63,6 +63,8 @@ const Shopcontextprovider = (props) => {
       size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+
+      delivery_fee: "23",
     },
     {
       id: 2,
@@ -75,6 +77,8 @@ const Shopcontextprovider = (props) => {
       size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+
+      delivery_fee: "23",
     },
     {
       id: 3,
@@ -87,6 +91,8 @@ const Shopcontextprovider = (props) => {
       size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+
+      delivery_fee: "23",
     },
     {
       id: 4,
@@ -99,6 +105,7 @@ const Shopcontextprovider = (props) => {
       size: ["200ml", "250ml", "500ml", "1L"],
       decription:
         "this is the best product you can find all over nepal with chepest price and with good delivery witha 99% costomer  satisataction",
+      delivery_fee: "23",
     },
   ];
 
