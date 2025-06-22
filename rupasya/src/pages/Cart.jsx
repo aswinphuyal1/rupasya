@@ -5,8 +5,14 @@ import bin from "../assets/bin.png";
 import Carttotal from "../components/Carttotal";
 
 const Cart = () => {
-  const { products, currency, delivery_fee, cartiteams, updatequantity } =
-    useContext(Shopcontext);
+  const {
+    products,
+    currency,
+    delivery_fee,
+    cartiteams,
+    updatequantity,
+    navigate,
+  } = useContext(Shopcontext);
 
   const [cartdata, setcartdata] = useState([]);
 
@@ -80,11 +86,16 @@ const Cart = () => {
         </div>
       </div>
       <div className="flex justify-end my-20">
-<div className="w-full sm:w-[450px]">
-  <Carttotal/>
-<div className="w-full text-end"></div>
-<button className="bg-black text-white text-sm my-8 px-8 py-3 justify-start">PROCEED TO CHECKOUT</button>
-</div>
+        <div className="w-full sm:w-[450px]">
+          <Carttotal />
+          <div className="w-full text-end"></div>
+          <button
+            onClick={() => navigate("/placeorder")}
+            className="bg-black text-white text-sm my-8 px-8 py-3 justify-start"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
       </div>
     </div>
   );
