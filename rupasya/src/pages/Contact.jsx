@@ -26,6 +26,7 @@ const Contact = () => {
       <Newsletter/>
     </div>
   );
+  
 };
 
 export default Contact;
