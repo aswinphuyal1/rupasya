@@ -6,8 +6,10 @@
   "author": "",
   "type": "commonjs",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "server":"nodemon "
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
