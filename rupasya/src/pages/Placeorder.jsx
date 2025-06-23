@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Title from "../components/Title";
 import Carttotal from "../components/Carttotal";
 import esewa from "../assets/esewa.png";
 import khalti from "../assets/khalti.png";
 import ime from "../assets/ime.png";
+import { Shopcontext } from "../context/Shopcontext";
 const Placeorder = () => {
   const [method, setmethod] = useState("khalti");
+  const { navigate } = useContext(Shopcontext);
   return (
     <div className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t ">
       {/* left side */}
@@ -105,12 +107,12 @@ const Placeorder = () => {
               <img className="h-10 mx-4" src={ime} alt="ime" />
             </div>
           </div>
-          <div className="w-full text-end mt8">
+          <div className="w-full text-end mt-8">
             <button
-              onClick={() => navigate("")}
+              type="button"
+              onClick={() => navigate("/orders")}
               className="bg-black text-white text-sm my-8 px-8 py-3 justify-start"
             >
-              
               PROCEED TO PAYMENT
             </button>
           </div>

@@ -13,29 +13,31 @@ import Navbar from "./components/Navbar";
 import Fotter from "./components/Fotter";
 import Searchbar from "./components/Searchbar";
 import { ToastContainer, toast } from "react-toastify";
-
+import Shopcontext from "./context/Shopcontext"; 
 const App = () => {
   return (
-    <div>
-      <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-        <ToastContainer/>
-        <Navbar />
-        <Searchbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/collection" element={<Collection />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/placeorder" element={<Placeorder />} />
-          <Route path="/product/:productID" element={<Product />} />
-        </Routes>
-        <Fotter />
+      <div>
+        <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+          <ToastContainer />
+          <Navbar />
+          <Searchbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/collection" element={<Collection />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/orders" element={<Order />} />
+            <Route path="/placeorder" element={<Placeorder />} />
+            <Route path="/product/:productID" element={<Product />} />
+          </Routes>
+          <Fotter />
+        </div>
       </div>
-    </div>
+   
   );
 };
 
 export default App;
+
