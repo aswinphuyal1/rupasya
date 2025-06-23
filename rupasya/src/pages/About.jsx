@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../components/Title";
 import make from "../assets/make.png";
 import Newsletter from "../components/Newsletter"
-import contact from "../assets/contact.png";
+
 const About = () => {
   return (
     <div>
