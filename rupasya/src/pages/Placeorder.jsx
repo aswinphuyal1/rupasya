@@ -110,7 +110,7 @@ const Placeorder = () => {
           <div className="w-full text-end mt-8">
             <button
               type="button"
-              onClick={() => navigate("/orders")}
+              onClick={() => navigate("/order")}
               className="bg-black text-white text-sm my-8 px-8 py-3 justify-start"
             >
               PROCEED TO PAYMENT
