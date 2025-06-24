@@ -9,7 +9,7 @@ const Shopcontextprovider = (props) => {
   const [search, setsearch] = useState("");
   const [showsearch, setshowserach] = useState(false);
   const [cartiteams, setcartiteams] = useState({});
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const updatequantity = (iteamid, size, quantity) => {
     let cartdata = structuredClone(cartiteams);
@@ -23,12 +23,14 @@ const Shopcontextprovider = (props) => {
           delete cartdata[iteamid];
         }
       }
+
       setcartiteams(cartdata);
     }
   };
 
   const addtocart = async (iteamid, size) => {
     if (!size) {
+      //tyo tostify wala error kya
       toast.error("Select size");
       return;
     }
@@ -54,7 +56,7 @@ const Shopcontextprovider = (props) => {
       for (const item in cartiteams[iteams])
         try {
           if (cartiteams[iteams][item] > 0) {
-            totalcount += cartiteams[iteams][item];
+            totalcount =totalcount + cartiteams[iteams][item];
           }
         } catch (error) {}
     }
@@ -151,7 +153,8 @@ const Shopcontextprovider = (props) => {
     addtocart,
     getcartcount,
     updatequantity,
-    getcartamount,navigate
+    getcartamount,
+    navigate,
   };
 
   return (
