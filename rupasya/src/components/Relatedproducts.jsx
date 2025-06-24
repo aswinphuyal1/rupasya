@@ -14,9 +14,9 @@ const Relatedproducts = ({ category, subcategory, currentid }) => {
         (item) =>
           category == item.category &&
           subcategory == item.subcategory &&
-          item.id != currentid
+          item.id != currentid //this line do not let same peoduct to be displayed again in related product
       );
-    
+
       setrelated(productcopy.slice(0, 5));
     }
   }, [products]);
@@ -43,3 +43,4 @@ const Relatedproducts = ({ category, subcategory, currentid }) => {
 };
 
 export default Relatedproducts;
+//

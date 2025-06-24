@@ -11,6 +11,7 @@ const Carttotal = () => {
     setsearch,
     showsearch,
     setshowserach,
+    
     cartiteams,
     addtocart,
     getcartcount,

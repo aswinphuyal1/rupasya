@@ -7,14 +7,14 @@ const Searchbar = () => {
   const { search, setsearch, showsearch, setshowserach } =
     useContext(Shopcontext);
   const [visible, setvisible] = useState(false);
-  const location = useLocation();
+ const location = useLocation();
   // Only show searchbar on /collection route and when showsearch is true
   useEffect(() => {
     if (location.pathname.includes("/collection") && showsearch) {
       setvisible(true);
     } else {
       setvisible(false);
-    }
+    } 
   }, [location.pathname, showsearch]);
 
   return visible ? (
@@ -42,3 +42,4 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
+//

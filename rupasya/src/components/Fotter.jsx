@@ -35,7 +35,7 @@ const Footer = () => {
               {" "}
               <li>Delivery</li>
             </Link>
-            <Link to="/contact" >
+            <Link to="/contact">
               {" "}
               <li>Privacy policy</li>
             </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
           <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
           <ul className="flex flex-col gap-1 text-gray-600">
             <li>+01-2345-678</li>
-            <li>phuyalaswin651@gmail.com</li>
+            <li>rupasya@gmail.com</li>
           </ul>
         </div>
       </div>

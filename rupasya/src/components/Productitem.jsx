@@ -24,3 +24,4 @@ const Productitem = ({ id, image, name, price }) => {
 };
 
 export default Productitem;
+//

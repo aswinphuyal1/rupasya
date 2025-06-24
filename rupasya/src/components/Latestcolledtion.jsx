@@ -19,7 +19,7 @@ const Latestcolledtion = () => {
         </p>
       </div>
       {/* rendering products*/}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ld:grid-cols-5 gap-4 gap-y-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
         {latestproduct.map((iteam, index) => (
           <Productitem
             key={index}
@@ -35,3 +35,5 @@ const Latestcolledtion = () => {
 };
 
 export default Latestcolledtion;
+
+//

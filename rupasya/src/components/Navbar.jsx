@@ -21,7 +21,7 @@ const Navbar = () => {
       <Link to="/">
         <img src={logo2} className="w-36" alt="" />{" "}
       </Link>
-      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+      <ul className="hidden sm:flex gap-5 text-sm text-gray-950">
         <NavLink to="/" className="flex flex-col items-center gap-1">
           <p>HOME</p>
           <hr
@@ -59,7 +59,7 @@ const Navbar = () => {
           alt=""
         />
         <div className="group relative">
-          <Link to='/login'>
+          <Link to="/login">
             <img className="w-5 cursor-pointer" src={profileicon} alt="" />
           </Link>
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
@@ -134,3 +134,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+//
