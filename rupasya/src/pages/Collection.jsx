@@ -27,6 +27,7 @@ const Collection = () => {
     }
   };
 
+
   const applyfilter = () => {
     let productcopy = products.slice();
 
@@ -44,7 +45,7 @@ const Collection = () => {
     if (subcategory.length > 0) {
       productcopy = productcopy.filter((item) =>
         subcategory.includes(item.subcategory)
-      );
+      );               
     }
     setfilterproduct(productcopy);
   };
