@@ -12,4 +12,10 @@ import 'dotenv/config'
  app.use(express.json())
  app.use(cors())
 
- 
+ //api endpoints
+ app.get('/',(req,res)=>
+{
+    res.send("Api working")
+})
+
+app.listen(port,()=>console.log('serve started on port :',port))
