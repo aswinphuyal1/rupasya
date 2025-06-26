@@ -1,29 +1,29 @@
 //npm i cors dotenv express jsonwebtoken mongoose multer nodemon razorpay stripe validator cloudinary bcrypt
 
-import express from 'express'
-import cors from 'cors'
-import 'dotenv/config'
-import connectdb from './config/mongodb.js'
-import connectcloudinary from './config/cloudinary.js'
-import userrouter from './routes/userroute.js'
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
+import connectdb from "./config/mongodb.js";
+import connectcloudinary from "./config/cloudinary.js";
+import userrouter from "./routes/userroute.js";
+import productroute from "./routes/productroute.js";
 
 //app config
- const app= express()
- const port =process.env.PORT ||4000
+const app = express();
+const port = process.env.PORT || 4000;
 
- connectdb();
- connectcloudinary();
+connectdb();
+connectcloudinary();
 
- //middlewares
- app.use(express.json())
- app.use(cors())
+//middlewares
+app.use(express.json());
+app.use(cors());
 
- //api endpoints
-app.use('/api/user',userrouter)
+//api endpoints
+app.use("/api/user", userrouter);
+app.use("/api/product", productroute);
+app.get("/", (req, res) => {
+  res.send("Api working");
+});
 
- app.get('/',(req,res)=>
-{
-    res.send("Api working")
-})
-
-app.listen(port,()=>console.log('serve started on port :',port))
+app.listen(port, () => console.log("serve started on port :", port));
