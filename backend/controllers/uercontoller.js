@@ -9,7 +9,37 @@ const createtoken = (id) => {
 };
 
 //route for user login
-const loginuser = async (req, res) => {};
+const loginuser = async (req, res) => 
+  {
+
+try {
+  const {email,password}=req.body;
+
+  const user =await usermodel.findOne({email});
+  if (!user) {
+    res.json({success:false,message:"user doesnot exist"})
+    
+  }
+  const ismatch =await bcrypt.compare(password,user.password)
+  if (ismatch) {
+    const token =createtoken(user._id)
+    res.json({success:true,token})
+   
+  }
+  else{
+    
+    res.json({ success: false,message:"Invalid" });
+  }
+
+} catch (error) 
+{
+ console.log(error)
+ res.json({success:false,message:error.message}) 
+}
+
+
+
+  };
 
 //route for user register
 
@@ -42,7 +72,7 @@ const registeruser = async (req, res) => {
     //data base ma store hunxa
     const user = await newuser.save();
     //user can  login
-    const token = createtoken(user.id);
+    const token = createtoken(user._id);
     res.json({ success: true, token });
   } catch (error) {
     console.log(error);
