@@ -57,7 +57,18 @@ const addproduct = async (req, res) => {
   }
 };
 //function for list product
-const listproduct = async (req, res) => {};
+const listproduct = async (req, res) => 
+  {
+    try {
+
+      const products=await productmodel.find({})
+      res.json({success:true,products})
+      
+    } catch (error) {
+      console.log(error)
+      res.json({success:false,message:error.message})
+    }
+  };
 
 // function remove product
 const removeproduct = async (req, res) => {};
