@@ -1,5 +1,6 @@
 import express from "express";
 import upload from "../middleware/multer.js";
+import adminauth from "../middleware/adminauth.js";
 import {
   listproduct,
   addproduct,
@@ -11,6 +12,7 @@ const productroute = express.Router();
 
 productroute.post(
   "/add",
+  adminauth,
   upload.fields([
     { name: "image1", maxcount: 1 },
     { name: "image2", maxcount: 1 },
@@ -19,8 +21,8 @@ productroute.post(
   ]),
   addproduct
 );
-productroute.post("/remove", removeproduct);
-productroute.post("/single", singleproduct);
-productroute.get("/list", listproduct);
+productroute.post("/remove", adminauth, removeproduct);
+productroute.post("/single", adminauth, singleproduct);
+productroute.get("/list", adminauth, listproduct);
 
 export default productroute;
