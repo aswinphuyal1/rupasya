@@ -1,11 +1,35 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <div className=" min-h-screen flex items-center justify-center w-full">
+      <div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md">
+        <h1 className="text-2xl font-bold mb-4">Admin pannel</h1>
+        <form>
+          <div className="mb-3 min-w-72">
+            <p className="text-sm font-medium text-gray-800 mb-2">Email Address</p>
+            <input
+              className="rounded-md  w-full px-3 py-2 border border-gray-300 outline-none "
+              type="email"
+              placeholder="enter email"
+              required
+            />
+          </div>
 
-export default Login
+          <div>
+            <p>Password</p>
+            <input
+              className="rounded-md  w-full px-3 py-2 border border-gray-300 outline-none "
+              type="password"
+              placeholder="Enter a password"
+              required
+            />
+          </div>
+          <button className="mt-2 w-full py-2 px-4 rounded-md text-white bg-black" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
