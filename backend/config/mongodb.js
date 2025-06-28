@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import  mongoose  from "mongoose";
 
 const connectdb = async () => {
   mongoose.connection.on("connected", () => {
@@ -7,3 +7,4 @@ const connectdb = async () => {
   await mongoose.connect(`${process.env.MONGODB_url}/rupasya`);
 };
 export default connectdb;
+//

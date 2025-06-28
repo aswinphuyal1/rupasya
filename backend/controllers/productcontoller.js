@@ -41,14 +41,15 @@ const addproduct = async (req, res) => {
       category,
       subcategory,
       sizes: JSON.parse(sizes),
+      //yeslay array ma changed hanxa
       bestseller: Boolean(bestseller),
       date: Date.now(),
     };
-    console.log(productdata);
+    // console.log(productdata);
     const product = new productmodel(productdata);
     await product.save();
 
-    console.log(imageurl);
+    // console.log(imageurl);
 
     res.json({ success: true, message: "product addesd" });
   } catch (error) {
@@ -67,17 +68,6 @@ const listproduct = async (req, res) => {
   }
 };
 
-// function remove product
-const removeproduct = async (req, res) => {
-  try {
-    await productmodel.findOneAndDelete(req.body.id);
-    res.json({ success: true, message: "product removed" });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: error.message });
-  }
-};
-
 //function for single product info
 const singleproduct = async (req, res) => {
   try {
@@ -90,6 +80,16 @@ const singleproduct = async (req, res) => {
   }
 };
 
-
+// function remove product
+const removeproduct = async (req, res) => {
+  try {
+    await productmodel.findOneAndDelete(req.body.id);
+    res.json({ success: true, message: "product removed" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 export { listproduct, addproduct, removeproduct, singleproduct };
+ //

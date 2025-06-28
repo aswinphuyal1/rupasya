@@ -1,6 +1,9 @@
 import validator from "validator";
+// A library to validate data (e.g., check if an email is valid).
 import bcrypt from "bcrypt";
+//Used to securely hash passwords before storing them.
 import jwt from "jsonwebtoken";
+//Generates and verifies secure tokens for authentication.
 import usermodel from "../models/usermodel.js";
 
 //to generate the token
@@ -89,3 +92,4 @@ const adminlogin = async (req, res) => {
 };
 
 export { loginuser, registeruser, adminlogin };
+//

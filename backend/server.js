@@ -18,6 +18,10 @@ connectcloudinary();
 //middlewares
 app.use(express.json());
 app.use(cors());
+//CORS is a security feature implemented by
+//  browsers to restrict how resources
+//  are shared between different origins
+//  (domain, protocol, and port)
 
 //api endpoints
 app.use("/api/user", userrouter);
@@ -27,3 +31,4 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => console.log("serve started on port :", port));
+//

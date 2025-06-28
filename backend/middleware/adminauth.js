@@ -12,6 +12,7 @@ const adminauth = async (req, res, next) => {
       return res.json({ success: false, message: "you are not authorizes" });
     }
     next();
+    //function to go to the next middleware if auth passes
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
@@ -19,3 +20,4 @@ const adminauth = async (req, res, next) => {
 };
 
 export default adminauth;
+//
