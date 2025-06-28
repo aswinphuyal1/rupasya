@@ -24,7 +24,7 @@ const Order = () => {
   }, [cartiteams]);
 
   return (
-    <div className="border-t pt-16 px-4 sm:px-10">
+    <div className="border-t border-b pt-16 px-4 sm:px-10">
       <div className="text-2xl mb-8">
         <Title text1="MY" text2="ORDERS" />
       </div>
@@ -84,3 +84,4 @@ const Order = () => {
 };
 
 export default Order;
+//

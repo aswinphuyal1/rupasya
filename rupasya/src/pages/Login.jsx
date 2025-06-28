@@ -18,9 +18,7 @@ const Login = () => {
           </p>
           <hr className="border-none h-[1.5px] w-8 bg-gray-800"></hr>
         </div>
-        {currentstate === "login" ? (
-          ""
-        ) : (
+        {currentstate === "login" ? ("") : (
           <input
             type="text"
             className="w-full px-3 py-2 border border-gray-800 "
@@ -68,3 +66,4 @@ const Login = () => {
 };
 
 export default Login;
+//

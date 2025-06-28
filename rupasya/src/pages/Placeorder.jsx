@@ -11,7 +11,7 @@ const Placeorder = () => {
   return (
     <div className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t ">
       {/* left side */}
-      <div className="flex flex-col gap-4 w-full sm:max-w-[480px]">
+      <div className="flex flex-col gap-6 w-full sm:max-w-[480px]">
         <div className="text-xl sm:text-2xl my-3">
           <Title text1={"YOUR"} text2={"INFO"} />
         </div>
@@ -68,7 +68,7 @@ const Placeorder = () => {
         <div className="mt-8 min-w-80">
           <Carttotal />
         </div>
-        <div className="mt-12">
+        <div className="mt-14">
           <Title text1={"PAYMENT"} text2={"METHOD"} />
           {/* payment to be sleected */}
           <div className="flex flex-col gap-3 lg:flex-row">
@@ -123,3 +123,4 @@ const Placeorder = () => {
 };
 
 export default Placeorder;
+//

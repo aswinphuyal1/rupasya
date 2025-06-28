@@ -5,9 +5,9 @@ import review from "../assets/reviewlogo.png";
 import halfreview from "../assets/halfrevuewsatar.png";
 import Relatedproducts from "../components/Relatedproducts";
 const Poduct = () => {
-  const { productID } = useParams();
-  const { products, currency, delivery_fee, addtocart } =
-    useContext(Shopcontext);
+  const { productID } = useParams(); //yeslay od linxa 
+
+  const { products, currency, delivery_fee, addtocart } =    useContext(Shopcontext);
   const [productdata, setproductdata] = useState(false);
   const [image, setimage] = useState("");
   const [size, setsize] = useState("");
@@ -98,10 +98,10 @@ const Poduct = () => {
       <div className="mt-10">
         <div className="flex">
           <b className="border px-5 py-3 text-sm">Description</b>
-          <p className="border px-5 py-3 text-sm">Reviews</p>
+          {/* <p className="border px-5 py-3 text-sm">Reviews</p> */}
         </div>
         <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
-          <p>🌿 Deep Moisturizing Cream</p>
+          <b>🌿 Deep Moisturizing Cream</b>
           <p>
             Nourish your skin with our rich, hydrating formula that locks in
             moisture and leaves your skin soft, smooth, and glowing all day.
@@ -123,3 +123,4 @@ const Poduct = () => {
 };
 
 export default Poduct;
+//

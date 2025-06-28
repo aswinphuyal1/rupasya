@@ -39,7 +39,7 @@ const About = () => {
       <div className="text-3xl py-7">
         <Title text1={"why"} text2={"us"} />
         <div className="flex flex-col md:flex-row text-sm">
-          <div className="border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
+          <div className="flex flex-col border px-10 md:px-16 py-8 sm:py-20  gap-5">
             <b>Quality Assurance</b>
             <p>
               Rupasya ensures that every product meets high standards of safety
@@ -68,7 +68,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Newsletter/>
+      <Newsletter />
     </div>
   );
 };
