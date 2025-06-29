@@ -28,7 +28,7 @@ const Add = ({ token }) => {
       formdata.append("category", category);
       formdata.append("subcategory", Subcategory);
       formdata.append("sizes", JSON.stringify(sizes)); // array converted into string
-      formdata.append("bestseller", bestseller);
+      formdata.append("bestseller", bestseller ? "true" : "false");
       image1 && formdata.append("image1", image1);
       image2 && formdata.append("image2", image2);
       image3 && formdata.append("image3", image3);
@@ -258,7 +258,7 @@ const Add = ({ token }) => {
       </div>
       <div className=" flex mb-2 mt-2">
         <input
-          onChange={() => setbestseller((prev) => !prev)}
+          onChange={(e) => setbestseller(e.target.checked)}
           checked={bestseller}
           type="checkbox"
           id="bestseller"

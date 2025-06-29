@@ -42,7 +42,7 @@ const addproduct = async (req, res) => {
       subcategory,
       sizes: JSON.parse(sizes),
       //yeslay array ma changed hanxa
-      bestseller: Boolean(bestseller),
+      bestseller: bestseller === "true",
       date: Date.now(),
     };
     // console.log(productdata);

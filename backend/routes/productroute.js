@@ -15,7 +15,7 @@ productroute.post( "/add",adminauth,upload.fields([
 );
 productroute.post("/remove", adminauth, removeproduct);
 productroute.post("/single", adminauth, singleproduct);
-productroute.get("/list", adminauth, listproduct);
+productroute.get("/list",listproduct);
 
 export default productroute;
 //
