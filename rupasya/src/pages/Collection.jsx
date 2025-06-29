@@ -27,7 +27,6 @@ const Collection = () => {
     }
   };
 
-
   const applyfilter = () => {
     let productcopy = products.slice();
 
@@ -45,7 +44,7 @@ const Collection = () => {
     if (subcategory.length > 0) {
       productcopy = productcopy.filter((item) =>
         subcategory.includes(item.subcategory)
-      );               
+      );
     }
     setfilterproduct(productcopy);
   };
@@ -67,7 +66,7 @@ const Collection = () => {
 
   useEffect(() => {
     applyfilter();
-  }, [category, subcategory, search, showsearch,products]);
+  }, [category, subcategory, search, showsearch, products]);
 
   useEffect(() => {
     sortproduct();
@@ -101,7 +100,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Makeup Products"}
+                value={"makeup products"}
                 onChange={togglecategory}
               />
               Makeup Products
@@ -111,7 +110,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Skincare Products"}
+                value={"skincare products"}
                 onChange={togglecategory}
               />
               Skincare Products
@@ -121,7 +120,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"Lip & Eye Care"}
+                value={"lip & eye Care"}
                 onChange={togglecategory}
               />
               Lip & Eye Care
@@ -141,8 +140,8 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"MEN"}
-                onClick={togglecategory}
+                value={"men"}
+                onChange={togglesubcategory}
               />
               MEN
             </p>
@@ -151,7 +150,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"WOMEN"}
+                value={"women"}
                 onChange={togglesubcategory}
               />
               WOMEN
@@ -161,7 +160,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"PREMIUM"}
+                value={"premium"}
                 onChange={togglesubcategory}
               />
               PREMIUM
@@ -170,7 +169,7 @@ const Collection = () => {
               <input
                 className="w-3"
                 type="checkbox"
-                value={"BASIC"}
+                value={"basic"}
                 onClick={togglesubcategory}
               />
               BASIC

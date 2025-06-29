@@ -43,8 +43,8 @@ const Add = ({ token }) => {
       if (response.data.select) {
         toast.success(response.data.message);
         setname("");
-        setSubcategory("men");
-        setcategory("makeup products");
+        setSubcategory("");
+        setcategory("");
         setdescription("");
         setimage1(false);
         setimage2(false);
