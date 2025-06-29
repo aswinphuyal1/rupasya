@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { Routes, Route } from "react-router-dom";
@@ -6,14 +6,20 @@ import Add from "./pages/Add";
 import List from "./pages/List";
 import Order from "./pages/Orders";
 import Login from "./components/Login";
+import { ToastContainer } from "react-toastify";
 export const backendurl = import.meta.env.VITE_BACKEND_URL;
 const App = () => {
-  const [token, settoken] = useState("");
+  const [token, settoken] = useState(localStorage.getItem('token')? localStorage.getItem('token'):'');
+  useEffect(() => {
 
+    localStorage.setItem('token',token)
+
+  }, [token]);
   return (
     <div className="bg-gray-50 min-h-screen">
+      <ToastContainer />
       {token === "" ? (
-        <Login />
+        <Login settoken={settoken} />
       ) : (
         <>
           <Navbar />

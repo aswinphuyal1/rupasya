@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios' //http ruquest garna
 import { backendurl } from "../App";
-const Login = () => {
+import { toast } from "react-toastify";
+const Login = ({settoken}) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -9,9 +10,18 @@ const Login = () => {
     try {
       e.preventDefault(); //prevent from realod
       const response =await axios.post(backendurl +"/api/user/admin",{email,password})
-console.log(response)
+if (response.data.success)
+{
+settoken(response.data.token)
+}
+else{
+  toast.error(response.data.message)
+
+}
     } catch (error) {
-      console.log(error)
+   
+    console.log(error)
+    toast.error(error.message);
     }
   };
   return (
