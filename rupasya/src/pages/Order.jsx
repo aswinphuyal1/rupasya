@@ -44,7 +44,7 @@ const Order = () => {
               <div className="flex items-start gap-4 sm:gap-6 text-sm">
                 <img
                   className="w-20 sm:w-24 rounded"
-                  src={product.image}
+                  src={product.image[0]}
                   alt={product.name}
                 />
                 <div>

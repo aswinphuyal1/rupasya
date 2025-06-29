@@ -41,7 +41,7 @@ const Cart = () => {
         <div>
           {cartdata.map((item, index) => {
             const productdata = products.find(
-              (product) => product.id == item.id
+              (product) => String(product._id) === String(item.id)
             );
             return (
               <div
@@ -102,4 +102,3 @@ const Cart = () => {
 };
 
 export default Cart;
-//
