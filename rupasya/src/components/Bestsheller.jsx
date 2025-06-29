@@ -26,7 +26,7 @@ const Bestsheller = () => {
                 key={index}
                 id={item.id}
                 name={item.name}
-                image={item.image}
+                image={item.image[0]}
                 price={item.price}
               />
             ))}
