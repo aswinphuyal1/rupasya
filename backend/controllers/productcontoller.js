@@ -51,10 +51,10 @@ const addproduct = async (req, res) => {
 
     // console.log(imageurl);
 
-    res.json({ success: true, message: "product addesd" });
+    res.json({ select: true, message: "product added" });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "error" });
+    res.json({ select: false, message: "error" });
   }
 };
 //function for list product
@@ -92,4 +92,4 @@ const removeproduct = async (req, res) => {
 };
 
 export { listproduct, addproduct, removeproduct, singleproduct };
- //
+//
