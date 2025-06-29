@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import axios from 'axios' //http ruquest garna
+import { backendurl } from "../App";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -7,8 +8,11 @@ const Login = () => {
   const onsubmithandeler = async (e) => {
     try {
       e.preventDefault(); //prevent from realod
-      
-    } catch (error) {}
+      const response =await axios.post(backendurl +"/api/user/admin",{email,password})
+console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <div className=" min-h-screen flex items-center justify-center w-full">
