@@ -5,18 +5,27 @@ import review from "../assets/reviewlogo.png";
 import halfreview from "../assets/halfrevuewsatar.png";
 import Relatedproducts from "../components/Relatedproducts";
 const Poduct = () => {
-  const { productID } = useParams(); //yeslay od linxa 
+  const { productID } = useParams(); //yeslay od linxa
 
-  const { products, currency, delivery_fee, addtocart } =    useContext(Shopcontext);
+  const { products, currency, delivery_fee, addtocart } =
+    useContext(Shopcontext);
   const [productdata, setproductdata] = useState(false);
   const [image, setimage] = useState("");
   const [size, setsize] = useState("");
 
   const fetchproductdata = async () => {
-    const found = products.find((item) => item.id == productID);
+    if (!products || products.length === 0) {
+      setproductdata(false);
+      return;
+    }
+    const found = products.find(
+      (item) => String(item.id) === String(productID)
+    );
     if (found) {
       setproductdata(found);
-      setimage(found.image[0]);
+      setimage(found.image && found.image[0] ? found.image[0] : "");
+    } else {
+      setproductdata(false);
     }
   };
 
@@ -67,7 +76,7 @@ const Poduct = () => {
           <div className="flex flex-col gap-4 my-8">
             <p>Select size</p>
             <div className="flex gap-2">
-              {productdata.size.map((item, index) => (
+              {(productdata.sizes || []).map((item, index) => (
                 <button
                   onClick={() => setsize(item)}
                   className={`border py-2 px-4 bg-gray-100 ${
@@ -81,7 +90,7 @@ const Poduct = () => {
             </div>
           </div>
           <div
-            onClick={() => addtocart(productdata.id,size)}
+            onClick={() => addtocart(productdata.id, size)}
             className="bg-black text-white px-8 py-3 text-sm active:bg-gray-400 w-fit"
           >
             {"ADD TO CART"}
@@ -118,9 +127,8 @@ const Poduct = () => {
       />
     </div>
   ) : (
-    <div className="opacity-0"></div>
+    <div className="opacity-0 min-h-[200px]">Product not found.</div>
   );
 };
 
 export default Poduct;
-//

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios"
+import axios from "axios";
 import { use } from "react";
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
@@ -12,8 +12,8 @@ const Shopcontextprovider = (props) => {
   const [showsearch, setshowserach] = useState(false);
   const [cartiteams, setcartiteams] = useState({});
   const navigate = useNavigate();
-  const [products,setproducts] =useState([])
-//const products=[]
+  const [products, setproducts] = useState([]);
+  //const products=[]
   const updatequantity = (iteamid, size, quantity) => {
     let cartdata = structuredClone(cartiteams);
     if (cartdata[iteamid] && cartdata[iteamid][size] !== undefined) {
@@ -59,7 +59,7 @@ const Shopcontextprovider = (props) => {
       for (const item in cartiteams[iteams])
         try {
           if (cartiteams[iteams][item] > 0) {
-            totalcount =totalcount + cartiteams[iteams][item];
+            totalcount = totalcount + cartiteams[iteams][item];
           }
         } catch (error) {}
     }
@@ -81,33 +81,34 @@ const Shopcontextprovider = (props) => {
     }
     return totalamount;
   };
-  
+
   useEffect(() => {
     console.log(cartiteams);
   }, [cartiteams]);
 
-
-  const getproductdata =async () => {
-    
+  const getproductdata = async () => {
     try {
-      const response= await axios.get(backendurl +"/api/product/list")
-      if(response.data.success)
-      {
-        setproducts(response.data.products)
-      }
-      else
-      {
-        toast.error(response.data.message)
+      const response = await axios.get(backendurl + "/api/product/list");
+      if (response.data.success) {
+        // Ensure every product has both id and _id
+        const productsWithId = response.data.products.map((p) => ({
+          ...p,
+          id: p._id ? String(p._id) : undefined,
+          _id: p._id ? String(p._id) : undefined,
+        }));
+        setproducts(productsWithId);
+      } else {
+        toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error)
-      toast.error(error.message)
+      console.log(error);
+      toast.error(error.message);
     }
-  }
-  
-useEffect(()=>{
-  getproductdata()
-},[])
+  };
+
+  useEffect(() => {
+    getproductdata();
+  }, []);
 
   const value = {
     products,
