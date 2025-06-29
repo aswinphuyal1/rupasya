@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-router-dom";
 import upload from "../assets/upload.png";
 const Add = () => {
+  const [image1, setimage1] = useState(false);
+  const [image2, setimage2] = useState(false);
+  const [image3, setimage3] = useState(false);
+  const [image4, setimage4] = useState(false);
+  const [name, setname] = useState("");
+  const [description, setdescription] = useState("");
+  const [price, setprice] = useState("");
+  const [category, setcategory] = useState("makeup products");
+  const [Subcategory, subSubcategory] = useState("men");
+const[bestseller,setbestseller]=useState(false)
+const[sizes ,setsizes]=useState([])
+
   return (
     <form className="flex flex-col w-full items-start gap-3">
       <div>
@@ -47,18 +59,18 @@ const Add = () => {
         <div>
           <p className="mb-2 ">Category</p>
           <select className="w-full px-3 py-2 ">
-            <option value="Makeup Products">Makeup Products</option>
-            <option value="Skincare Products">Skincare Products</option>
-            <option value="Lip & Eye Care">Lip & Eye Care</option>
+            <option value="makeup products">Makeup Products</option>
+            <option value="skincare products">Skincare Products</option>
+            <option value="lip & eye Care">Lip & Eye Care</option>
           </select>
         </div>
         <div>
-          <p className="mb-2 ">Sub category</p>
+          <p className="mb-2 ">Subcategory</p>
           <select className="w-full px-3 py-2 ">
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
+            <option value="men">Men</option>
+            <option value="women">Women</option>
             <option value="premium">PREMIUM</option>
-            <option value="Basic">Basic</option>
+            <option value="basic">Basic</option>
           </select>
         </div>
         <div>
