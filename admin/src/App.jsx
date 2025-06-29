@@ -6,6 +6,7 @@ import Add from "./pages/Add";
 import List from "./pages/List";
 import Order from "./pages/Orders";
 import Login from "./components/Login";
+export const backendurl = import.meta.env.VITE_BACKEND_URL;
 const App = () => {
   const [token, settoken] = useState("");
 
