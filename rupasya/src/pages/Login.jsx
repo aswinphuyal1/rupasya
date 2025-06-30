@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Shopcontext } from "../context/Shopcontext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
 
-  const { navigate, settoken, backendurl, tokekn } = useContext(Shopcontext);
+  const { navigate, settoken, backendurl, token } = useContext(Shopcontext);
 
   const onsubmithandler = async (event) => {
     event.preventDefault();
@@ -26,31 +26,32 @@ const Login = () => {
           settoken(response.data.token);
           localStorage.setItem("token", response.data.token);
         } else {
-          tosat.error(response.data.message);
-        }
-      } else {
-        const response = await axios.post(backendurl + "/api/user/login",{email,password});
-        console.log(response.data);
-        if(response.data.success)
-        {
-          settoken(response.data.tokekn)
-          localStorage.setItem("token",response.data.token)
-        }
-        else
-        {
           toast.error(response.data.message);
         }
-        
+      } else {
+        const response = await axios.post(backendurl + "/api/user/login", {
+          email,
+          password,
+        });
+        console.log(response.data);
+        if (response.data.success) {
+          settoken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+        } else {
+          toast.error(response.data.message);
+        }
       }
-
-
     } catch (error) {
       console.log(error.message);
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
-  
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <div>

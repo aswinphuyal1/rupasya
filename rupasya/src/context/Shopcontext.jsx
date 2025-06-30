@@ -13,7 +13,7 @@ const Shopcontextprovider = (props) => {
   const [cartiteams, setcartiteams] = useState({});
   const navigate = useNavigate();
   const [products, setproducts] = useState([]);
-  const [tokekn,settoken]=useState('')
+  const [token,settoken]=useState('')
   //const products=[]
   const updatequantity = (iteamid, size, quantity) => {
     let cartdata = structuredClone(cartiteams);
@@ -111,6 +111,8 @@ const Shopcontextprovider = (props) => {
     getproductdata();
   }, []);
 
+
+
   const value = {
     products,
     currency,
@@ -126,7 +128,7 @@ const Shopcontextprovider = (props) => {
     getcartamount,
     navigate,
     settoken,
-    backendurl,tokekn
+    backendurl,token
   };
 
   return (
