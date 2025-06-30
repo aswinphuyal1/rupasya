@@ -1,11 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Shopcontext } from "../context/Shopcontext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [currentstate, setcurrentstate] = useState("login");
+  const [name, setname] = useState("");
+  const [password, setpassword] = useState("");
+  const [email, setemail] = useState("");
+
+  const { navigate, settoken, backendurl, tokekn } = useContext(Shopcontext);
+
   const onsubmithandler = async (event) => {
     event.preventDefault();
     //yeslay relode huna dinna
+    try {
+      if (currentstate == "signup") {
+        const response = await axios.post(backendurl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+
+        if (response.data.success) {
+          settoken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+        } else {
+          tosat.error(response.data.message);
+        }
+      } else {
+        const response = await axios.post(backendurl + "/api/user/login",{email,password});
+        console.log(response.data);
+        if(response.data.success)
+        {
+          settoken(response.data.tokekn)
+          localStorage.setItem("token",response.data.token)
+        }
+        else
+        {
+          toast.error(response.data.message);
+        }
+        
+      }
+
+
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message)
+    }
   };
+
+  
+
   return (
     <div>
       <form
@@ -18,21 +64,29 @@ const Login = () => {
           </p>
           <hr className="border-none h-[1.5px] w-8 bg-gray-800"></hr>
         </div>
-        {currentstate === "login" ? ("") : (
+        {currentstate === "login" ? (
+          ""
+        ) : (
           <input
             type="text"
+            onChange={(e) => setname(e.target.value)}
+            value={name}
             className="w-full px-3 py-2 border border-gray-800 "
             placeholder="Enter your name"
             required
           ></input>
         )}
         <input
+          onChange={(e) => setemail(e.target.value)}
+          value={email}
           type="email"
           className="w-full px-3 py-2 border border-gray-800 "
           placeholder="Email"
           required
         ></input>
         <input
+          onChange={(e) => setpassword(e.target.value)}
+          value={password}
           type="password"
           className="w-full px-3 py-2 border border-gray-800 "
           placeholder="Password"
@@ -66,4 +120,3 @@ const Login = () => {
 };
 
 export default Login;
-//
