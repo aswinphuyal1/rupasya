@@ -33,8 +33,8 @@ const Relatedproducts = ({ category, subcategory, currentid }) => {
             id={item.id}
             name={item.name}
             price={item.price}
-            image={item.image}
-            c
+            image={item.image[0]}
+            
           />
         ))}
       </div>

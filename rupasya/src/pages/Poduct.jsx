@@ -71,7 +71,7 @@ const Poduct = () => {
             {productdata.price}
           </p>
           <p className="mt-5 text-gray-950 md:w-4/5">
-            {productdata.decription}
+            {productdata.description}
           </p>
           <div className="flex flex-col gap-4 my-8">
             <p>Select size</p>
