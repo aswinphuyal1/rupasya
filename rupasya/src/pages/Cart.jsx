@@ -17,23 +17,22 @@ const Cart = () => {
   const [cartdata, setcartdata] = useState([]);
 
   useEffect(() => {
-  if(products.length>0)
-  {
-    const tempdata = [];
-    for (const iteams in cartiteams) {
-      for (const item in cartiteams[iteams]) {
-        if (cartiteams[iteams][item] > 0) {
-          tempdata.push({
-            id: iteams,
-            size: item,
-            quantity: cartiteams[iteams][item],
-          });
+    if (products.length > 0) {
+      const tempdata = [];
+      for (const iteams in cartiteams) {
+        for (const item in cartiteams[iteams]) {
+          if (cartiteams[iteams][item] > 0) {
+            tempdata.push({
+              id: iteams,
+              size: item,
+              quantity: cartiteams[iteams][item],
+            });
+          }
         }
       }
+      setcartdata(tempdata);
     }
-    setcartdata(tempdata);
-  }
-  }, [cartiteams,products]);
+  }, [cartiteams, products]);
 
   return (
     <div>
@@ -66,9 +65,7 @@ const Cart = () => {
                         {currency}
                         {productdata.price}
                       </p>
-                      <p className="px-2 sm:px-3 sm:py-1">
-                        {item.size}
-                      </p>
+                      <p className="px-2 sm:px-3 sm:py-1">{item.size}</p>
                     </div>
                   </div>
                 </div>
@@ -76,7 +73,10 @@ const Cart = () => {
                   className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1  bg-slate-50"
                   type="number"
                   min={1}
-                  defaultValue={item.quantity}
+                  value={item.quantity}
+                  onChange={(e) =>
+                    updatequantity(item.id, item.size, Number(e.target.value))
+                  }
                 />
                 <img
                   onClick={() => updatequantity(item.id, item.size, 0)}

@@ -33,9 +33,9 @@ const Shopcontextprovider = (props) => {
 
       if (token) {
         try {
-          await axios.post(
+           await axios.post(
             backendurl + "/api/cart/update",
-            {iteamid, size, quantity },
+            { iteamid, size, quantity },
             { headers: { token } }
           );
         } catch (error) {
