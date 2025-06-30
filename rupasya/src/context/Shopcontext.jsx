@@ -13,10 +13,11 @@ const Shopcontextprovider = (props) => {
   const [cartiteams, setcartiteams] = useState({});
   const navigate = useNavigate();
   const [products, setproducts] = useState([]);
-  const [token,settoken]=useState('')
+  const [token, settoken] = useState("");
   //const products=[]
-  const updatequantity = (iteamid, size, quantity) => {
+  const updatequantity = async (iteamid, size, quantity) => {
     let cartdata = structuredClone(cartiteams);
+
     if (cartdata[iteamid] && cartdata[iteamid][size] !== undefined) {
       if (quantity > 0) {
         cartdata[iteamid][size] = quantity;
@@ -29,10 +30,21 @@ const Shopcontextprovider = (props) => {
       }
 
       setcartiteams(cartdata);
+
+      if (token) {
+        try {
+          await axios.post(
+            backendurl + "/api/cart/update",
+            {iteamid, size, quantity },
+            { headers: { token } }
+          );
+        } catch (error) {
+          console.log(error);
+          toast.error(error.message);
+        }
+      }
     }
   };
-
-  
 
   const addtocart = async (iteamid, size) => {
     if (!size) {
@@ -54,17 +66,35 @@ const Shopcontextprovider = (props) => {
       cartdata[iteamid][size] = 1;
     }
     setcartiteams(cartdata);
-if(token)
-{
-  try {
-    await axios.post(backendurl + "/api/cart/add", { iteamid, size },{headers:{token}});
-  } catch (error) {
-    console.log(error);
-    toast.error(error.message)
-    
-  }
-}
 
+    if (token) {
+      try {
+        await axios.post(
+          backendurl + "/api/cart/add",
+          { iteamid, size },
+          { headers: { token } }
+        );
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
+  };
+
+  const getusercart = async (token) => {
+    try {
+      const response = await axios.post(
+        backendurl + "/api/cart/get",
+        {},
+        { headers: { token } }
+      );
+      if (response.data.success) {
+        setcartiteams(response.data.cartdata);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   const getcartcount = () => {
@@ -124,14 +154,12 @@ if(token)
     getproductdata();
   }, []);
 
-useEffect(()=>
-{
-  if(!token &&localStorage.getItem('token'))
-  {
-    settoken(localStorage.getItem('token'))
-  }
-
-})
+  useEffect(() => {
+    if (!token && localStorage.getItem("token")) {
+      settoken(localStorage.getItem("token"));
+      getusercart(localStorage.getItem("token"));
+    }
+  });
 
   const value = {
     products,
@@ -148,11 +176,13 @@ useEffect(()=>
     getcartamount,
     navigate,
     settoken,
-    backendurl,token,setcartiteams
+    backendurl,
+    token,
+    setcartiteams,
   };
 
   return (
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
   );
 };
-export default Shopcontextprovider
+export default Shopcontextprovider;
