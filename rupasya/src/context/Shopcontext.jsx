@@ -32,6 +32,8 @@ const Shopcontextprovider = (props) => {
     }
   };
 
+  
+
   const addtocart = async (iteamid, size) => {
     if (!size) {
       //tyo tostify wala error kya
@@ -52,6 +54,17 @@ const Shopcontextprovider = (props) => {
       cartdata[iteamid][size] = 1;
     }
     setcartiteams(cartdata);
+if(token)
+{
+  try {
+    await axios.post(backendurl + "/api/cart/add", { iteamid, size },{headers:{token}});
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message)
+    
+  }
+}
+
   };
 
   const getcartcount = () => {
@@ -142,4 +155,4 @@ useEffect(()=>
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
   );
 };
-export default Shopcontextprovider;
+export default Shopcontextprovider
