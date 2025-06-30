@@ -111,7 +111,14 @@ const Shopcontextprovider = (props) => {
     getproductdata();
   }, []);
 
+useEffect(()=>
+{
+  if(!token &&localStorage.getItem('token'))
+  {
+    settoken(localStorage.getItem('token'))
+  }
 
+})
 
   const value = {
     products,
@@ -128,7 +135,7 @@ const Shopcontextprovider = (props) => {
     getcartamount,
     navigate,
     settoken,
-    backendurl,token
+    backendurl,token,setcartiteams
   };
 
   return (

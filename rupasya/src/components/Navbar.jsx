@@ -10,7 +10,21 @@ import { Shopcontext } from "../context/Shopcontext";
 
 const Navbar = () => {
   const [visible, setvisible] = useState(false);
-  const { setshowserach, getcartcount } = useContext(Shopcontext);
+  const {
+    setshowserach,
+    getcartcount,
+    settoken,
+    token,
+    setcartiteams,
+  } = useContext(Shopcontext);
+
+   const logout=()=>
+   {
+    localStorage.removeItem('token')
+    settoken('')
+    setcartiteams({})
+    navigate('/login')
+   }
   const navigate = useNavigate();
   const handleSearchClick = () => {
     setshowserach(true);
@@ -65,13 +79,12 @@ const Navbar = () => {
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-700 rounded ">
               <Link to="/login">
-              
-                <p className="cursor-pointer hover:text-black">
-                  My Profile
-                </p>{" "}
+                <p className="cursor-pointer hover:text-black">My Profile</p>{" "}
               </Link>
-              <p className="cursor-pointer hover:text-black">Order</p>
-              <p className="cursor-pointer hover:text-black">Logout</p>
+              <Link to="/order">
+                <p className="cursor-pointer hover:text-black">Order</p>{" "}
+              </Link>
+              <p onClick={logout} className="cursor-pointer hover:text-black">Logout</p>
             </div>
           </div>
         </div>
