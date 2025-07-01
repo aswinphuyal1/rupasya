@@ -1,44 +1,28 @@
+ 
 import React, { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import { Shopcontext } from "../context/Shopcontext";
 import axios from "axios";
+
 const Order = () => {
-  const {
-    products,
-    currency,
-    delivery_fee,
-    search,
-    setsearch,
-    showsearch,
-    setshowserach,
-    cartiteams,
-    addtocart,
-    getcartcount,
-    updatequantity,
-    getcartamount,
-    navigate,
-    settoken,
-    backendurl,
-    token,
-    setcartiteams,
-  } = useContext(Shopcontext);
+  const { products, currency, backendurl, token } = useContext(Shopcontext);
+
   const [orderdata, setorderdata] = useState([]);
-  const [cartdata, setcartdata] = useState([]);
 
   const loadorderdata = async () => {
     try {
-      if (!token) {
-        return null;
-      }
+      if (!token) return;
+
       const response = await axios.post(
         backendurl + "/api/order/userorders",
         {},
         { headers: { token } }
       );
+
       if (response.data.success) {
         let allorderitem = [];
-        response.data.orders.map((order) => {
-          order.items.map((item) => {
+        response.data.orders.forEach((order) => {
+          order.items.forEach((item) => {
             item["status"] = order.status;
             item["payment"] = order.payment;
             item["paymentmethod"] = order.paymentmethod;
@@ -46,8 +30,8 @@ const Order = () => {
             allorderitem.push(item);
           });
         });
-        console.log(allorderitem);
-        setorderdata(allorderitem);
+
+        setorderdata(allorderitem.reverse());
       }
     } catch (error) {
       console.log(error);
@@ -58,37 +42,22 @@ const Order = () => {
     loadorderdata();
   }, [token]);
 
-  useEffect(() => {
-    const tempdata = [];
-    for (const iteams in cartiteams) {
-      for (const item in cartiteams[iteams]) {
-        if (cartiteams[iteams][item] > 0) {
-          tempdata.push({
-            id: iteams,
-            size: item,
-            quantity: cartiteams[iteams][item],
-          });
-        }
-      }
-    }
-    setcartdata(tempdata);
-  }, [cartiteams]);
-
   return (
     <div className="border-t border-b pt-16 px-4 sm:px-10">
       <div className="text-2xl mb-8">
         <Title text1="MY" text2="ORDERS" />
       </div>
 
-      {cartdata.length > 0 ? (
-        cartdata.map((cartItem, index) => {
-          const product = orderdata?.find(
-            (p) => String(p.id) === String(cartItem.id)
+      {orderdata.length > 0 ? (
+        orderdata.map((cartItem, index) => {
+          const product = products.find(
+            (p) => String(p._id || p.id) === String(cartItem.id)
           );
           if (!product) return null;
+
           return (
             <div
-              key={product.id + cartItem.size}
+              key={product.id + cartItem.size + index}
               className="py-6 border-t flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-gray-700"
             >
               {/* Product Info */}
@@ -109,7 +78,7 @@ const Order = () => {
                     <p>Size: {cartItem.size}</p>
                   </div>
                   <p className="mt-2 text-sm">
-                    Date: <span className="text-gray-500">25, Jul, 2024</span>
+                    Date: <span className="text-gray-500">{cartItem.date}</span>
                   </p>
                 </div>
               </div>
@@ -117,8 +86,16 @@ const Order = () => {
               {/* Status and Button */}
               <div className="flex items-center gap-6 justify-between md:justify-end w-full md:w-auto">
                 <p className="flex items-center gap-2 text-sm text-gray-700">
-                  <span className="text-green-500 text-lg">●</span>
-                  Ready to ship
+                  <span
+                    className={`text-lg ${
+                      cartItem.status === "Delivered"
+                        ? "text-green-500"
+                        : "text-yellow-500"
+                    }`}
+                  >
+                    ●
+                  </span>
+                  {cartItem.status}
                 </p>
                 <button className="border border-gray-400 px-4 py-1 rounded text-sm hover:bg-gray-100 transition">
                   Track Order
