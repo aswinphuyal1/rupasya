@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import { Shopcontext } from "../context/Shopcontext";
-
+import axios from "axios";
 const Order = () => {
   const {
     products,
@@ -22,26 +22,41 @@ const Order = () => {
     token,
     setcartiteams,
   } = useContext(Shopcontext);
-const [orderdata,setorderdata]=useState([])
+  const [orderdata, setorderdata] = useState([]);
   const [cartdata, setcartdata] = useState([]);
 
-const loadorderdata= async () => {
-  try {
-    if(!token)
-    {
-      return null
+  const loadorderdata = async () => {
+    try {
+      if (!token) {
+        return null;
+      }
+      const response = await axios.post(
+        backendurl + "/api/order/userorders",
+        {},
+        { headers: { token } }
+      );
+      if (response.data.success) {
+        let allorderitem = [];
+        response.data.orders.map((order) => {
+          order.items.map((item) => {
+            item["status"] = order.status;
+            item["payment"] = order.payment;
+            item["paymentmethod"] = order.paymentmethod;
+            item["date"] = order.date;
+            allorderitem.push(item);
+          });
+        });
+        console.log(allorderitem);
+        setorderdata(allorderitem);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-  } catch (error) {
-    
-  }
-}
+  };
 
-useEffect(()=>
-{
-  loadorderdata()
-
-},[token])
+  useEffect(() => {
+    loadorderdata();
+  }, [token]);
 
   useEffect(() => {
     const tempdata = [];
@@ -120,4 +135,3 @@ useEffect(()=>
 };
 
 export default Order;
-//
