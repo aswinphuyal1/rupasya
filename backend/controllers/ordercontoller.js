@@ -29,7 +29,10 @@ const placeorder = async (req, res) => {
 };
 
 //placing order using khalti method
-const placeorderkhalti = async (req, res) => {};
+const placeorderkhalti = async (req, res) => {
+
+  
+};
 //placing orders using esewa
 const placeorderesewa = async (req, res) => {};
 
@@ -37,7 +40,14 @@ const placeorderesewa = async (req, res) => {};
 const allorders = async (req, res) => {};
 
 //user order data for frontend
-const usserorder = async (req, res) => {};
+const usserorder = async (req, res) => {
+
+  try {
+    const { userid } = req.body;
+    const orders = await ordermodel.find({ userid });
+    res.json({ success: true, orders });
+  } catch (error) {}
+};
 
 //upadate order satus from admin pannel
 const updatstatus = async (req, res) => {};

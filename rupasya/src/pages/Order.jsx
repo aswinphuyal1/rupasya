@@ -3,9 +3,45 @@ import Title from "../components/Title";
 import { Shopcontext } from "../context/Shopcontext";
 
 const Order = () => {
-  const { products, currency, cartiteams } = useContext(Shopcontext);
-
+  const {
+    products,
+    currency,
+    delivery_fee,
+    search,
+    setsearch,
+    showsearch,
+    setshowserach,
+    cartiteams,
+    addtocart,
+    getcartcount,
+    updatequantity,
+    getcartamount,
+    navigate,
+    settoken,
+    backendurl,
+    token,
+    setcartiteams,
+  } = useContext(Shopcontext);
+const [orderdata,setorderdata]=useState([])
   const [cartdata, setcartdata] = useState([]);
+
+const loadorderdata= async () => {
+  try {
+    if(!token)
+    {
+      return null
+    }
+    
+  } catch (error) {
+    
+  }
+}
+
+useEffect(()=>
+{
+  loadorderdata()
+
+},[token])
 
   useEffect(() => {
     const tempdata = [];
@@ -31,7 +67,7 @@ const Order = () => {
 
       {cartdata.length > 0 ? (
         cartdata.map((cartItem, index) => {
-          const product = products?.find(
+          const product = orderdata?.find(
             (p) => String(p.id) === String(cartItem.id)
           );
           if (!product) return null;

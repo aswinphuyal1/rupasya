@@ -7,6 +7,7 @@ import cod from "../assets/ime.png";
 import { Shopcontext } from "../context/Shopcontext";
 import { data } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 const Placeorder = () => {
   const [method, setmethod] = useState("cod");
   const {
@@ -91,6 +92,7 @@ const Placeorder = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.message)
     }
   };
 
