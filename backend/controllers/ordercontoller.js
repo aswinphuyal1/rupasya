@@ -18,9 +18,9 @@ const placeorder = async (req, res) => {
     };
     const neworder = new ordermodel(orderdata);
     await neworder.save();
-    await usermodel.findOneAndUpdate(userid, { cartdata: {} });
+    await usermodel.findOneAndUpdate({ _id: userid }, { cartdata: {} });
 
-    response.json({ success: true, message: "order place" });
+    res.json({ success: true, message: "order place" }); 
   } catch (error) {
     console.log(error);
 

@@ -3,11 +3,12 @@ import Title from "../components/Title";
 import Carttotal from "../components/Carttotal";
 import esewa from "../assets/esewa.png";
 import khalti from "../assets/khalti.png";
-import ime from "../assets/ime.png";
+import cod from "../assets/ime.png";
 import { Shopcontext } from "../context/Shopcontext";
 import { data } from "react-router-dom";
+import axios from "axios";
 const Placeorder = () => {
-  const [method, setmethod] = useState("khalti");
+  const [method, setmethod] = useState("cod");
   const {
     products,
     currency,
@@ -27,48 +28,77 @@ const Placeorder = () => {
     token,
     setcartiteams,
   } = useContext(Shopcontext);
-  
+
   const [formdata, setformdata] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    street: '',
-    city: '',
-    province:'',
-    zipcode:'',
-    phone:'',
+    firstname: "",
+    lastname: "",
+    email: "",
+    street: "",
+    city: "",
+    province: "",
+    zipcode: "",
+    phone: "",
   });
 
+  const onchangehandelr = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setformdata((data) => ({ ...data, [name]: value }));
+  };
 
-  const onchangehandelr =(e)=>
-  {
-    const name=e.target.name;
-    const value =e.target.value
-    setformdata(data=>({...data,[name]:value}))
-  }
-
-const onsubmithandler = async (e) => {
-  e.preventDefault()
-  try {
-    const orderitem =[]
-    for(const items in cartiteams)
-    {
-      for(const item in cartiteams[items])
-      {
-        if(cartiteams[items][item]>0)
-        {
-          const iteaminfo =structuredClone(cartiteams)
+  const onsubmithandler = async (e) => {
+    e.preventDefault();
+    try {
+      const orderitem = [];
+      for (const items in cartiteams) {
+        for (const item in cartiteams[items]) {
+          if (cartiteams[items][item] > 0) {
+            const iteaminfo = structuredClone(
+              products.find((product) => product._id == items)
+            );
+            if (iteaminfo) {
+              iteaminfo.size = item;
+              iteaminfo.quantity = cartiteams[items][item];
+              orderitem.push(iteaminfo);
+            }
+          }
         }
       }
+      let orderdata = {
+        address: formdata,
+        items: orderitem,
+        amount: getcartamount() + delivery_fee,
+      };
+      switch (method) {
+        //api call for cash on delivery
+        case "cod":
+          const response = await axios.post(
+            backendurl + "/api/order/place",
+            orderdata,
+            { headers: { token } }
+          );
+          console.log(response.data);
+          
+          if (response.data.success) {
+            setcartiteams({});
+            navigate("/order");
+          } else {
+            toast.error(response.data.message);
+          }
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-  } catch (error) {
-    
-  }
-}
+  };
 
   return (
-    <form onSubmit={onsubmithandler} className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t ">
+    <form
+      onSubmit={onsubmithandler}
+      className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t "
+    >
       {/* left side */}
       <div className="flex flex-col gap-6 w-full sm:max-w-[480px]">
         <div className="text-xl sm:text-2xl my-3">
@@ -187,21 +217,20 @@ const onsubmithandler = async (e) => {
               <img className="h-10 mx-4" src={khalti} alt="khalti" />
             </div>
             <div
-              onClick={() => setmethod("ime")}
+              onClick={() => setmethod("cod")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
                 className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method == "ime" ? "bg-green-400" : ""
+                  method == "cod" ? "bg-green-400" : ""
                 }`}
               ></p>
-              <img className="h-10 mx-4" src={ime} alt="ime" />
+              <img className="h-10 mx-4" src={cod} alt="cod" />
             </div>
           </div>
           <div className="w-full text-end mt-8">
-            <button 
+            <button
               type="submit"
-         
               className="bg-black text-white text-sm my-8 px-8 py-3 justify-start"
             >
               PROCEED TO PAYMENT
