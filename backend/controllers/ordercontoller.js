@@ -37,7 +37,20 @@ const placeorderkhalti = async (req, res) => {
 const placeorderesewa = async (req, res) => {};
 
 //all orders data for admin pannel
-const allorders = async (req, res) => {};
+const allorders = async (req, res) => {
+
+
+  try {
+    
+    const orders = await ordermodel.find({})
+    res.json({success:true,orders})
+
+  } catch (error) {
+    console.log(error);
+
+    res.json({ success: false, message: error.message });
+  }
+};
 
 //user order data for frontend
 const usserorder = async (req, res) => {
@@ -46,7 +59,11 @@ const usserorder = async (req, res) => {
     const { userid } = req.body;
     const orders = await ordermodel.find({ userid });
     res.json({ success: true, orders });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+
+    res.json({ success: false, message: error.message });
+  }
 };
 
 //upadate order satus from admin pannel
