@@ -1,4 +1,3 @@
- 
 import React, { useContext, useEffect, useState } from "react";
 import Title from "../components/Title";
 import { Shopcontext } from "../context/Shopcontext";
@@ -78,7 +77,18 @@ const Order = () => {
                     <p>Size: {cartItem.size}</p>
                   </div>
                   <p className="mt-2 text-sm">
-                    Date: <span className="text-gray-500">{cartItem.date}</span>
+                    Date:
+                    <span className="text-gray-500">
+                      {cartItem.date
+                        ? new Date(cartItem.date).toLocaleDateString()
+                        : ""}
+                    </span>
+                  </p>
+                  <p className="mt-2 text-sm">
+                    Payment:
+                    <span className="text-gray-500">
+                      {cartItem.paymentmethod}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -97,7 +107,7 @@ const Order = () => {
                   </span>
                   {cartItem.status}
                 </p>
-                <button className="border border-gray-400 px-4 py-1 rounded text-sm hover:bg-gray-100 transition">
+                <button onClick={loadorderdata} className="border border-gray-400 px-4 py-1 rounded text-sm hover:bg-gray-100 transition">
                   Track Order
                 </button>
               </div>

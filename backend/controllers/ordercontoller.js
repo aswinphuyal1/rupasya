@@ -13,7 +13,7 @@ const placeorder = async (req, res) => {
       amount,
       paymentmethod: "cod",
       payment: false,
-      date: Date.now(),
+      date:Date.now(),
       address,
     };
     const neworder = new ordermodel(orderdata);
