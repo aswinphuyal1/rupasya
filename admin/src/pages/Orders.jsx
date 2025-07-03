@@ -31,6 +31,26 @@ const Orders = ({ token }) => {
     }
   };
 
+const statushandler =async (event,orderid)=>
+{
+  try {
+    
+    const response = await axios.post(
+      backendurl + "/api/order/status",
+      { orderid, status: event.target.value },
+      { headers: { token } }
+    );
+    if (response.data.success) {
+      await fetchallorders()
+      
+    }
+  } catch (error) {
+    console.log(error)
+    toast.error(response.data.message)
+    
+  }
+}
+  
   useEffect(() => {
     fetchallorders();
   }, [token]);
@@ -81,7 +101,7 @@ const Orders = ({ token }) => {
               {currency}
               {order.amount}
             </p>
-            <select className="p-2 font-semibold">
+            <select onChange={(event)=>statushandler(event,order._id)} value={order.status} className="p-2 font-semibold">
               <option value="Order placed">Order placed</option>
               <option value="Packing">Packing</option>
               <option value="Shipped">Shipped</option>

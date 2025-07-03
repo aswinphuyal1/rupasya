@@ -67,7 +67,22 @@ const usserorder = async (req, res) => {
 };
 
 //upadate order satus from admin pannel
-const updatstatus = async (req, res) => {};
+const updatstatus = async (req, res) => {
+
+  try {
+    
+
+const {orderid,status}= req.body
+
+await ordermodel.findByIdAndUpdate(orderid,{status})
+res.json({success:true,message:'status update'})
+  } catch (error) {
+    console.log(error);
+
+    res.json({ success: false, message: error.message });
+
+  }
+};
 
 export {
   placeorder,
