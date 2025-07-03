@@ -1,6 +1,10 @@
 import { response } from "express";
 import ordermodel from "../models/ordermodel.js";
 import usermodel from "../models/usermodel.js";
+import stripe from 'stripe'
+//payment dateway
+
+
 
 //palcaing orders using cash on delivery
 const placeorder = async (req, res) => {
