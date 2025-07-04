@@ -14,32 +14,25 @@ import orderrouter from "./routes/orderroute.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
-const startserver = async () => {
-  try {
-    await connectdb();
-    connectcloudinary();
+connectdb();
+connectcloudinary();
 
-    //middlewares
-    app.use(express.json());
-    app.use(cors());
-    //CORS is a security feature implemented by
-    //  browsers to restrict how resources
-    //  are shared between different origins
-    //  (domain, protocol, and port)
+//middlewares
+app.use(express.json());
+app.use(cors());
+//CORS is a security feature implemented by
+//  browsers to restrict how resources
+//  are shared between different origins
+//  (domain, protocol, and port)
 
-    //api endpoints
-    app.use("/api/user", userrouter);
-    app.use("/api/product", productroute);
-    app.use("/api/cart", cartrouter);
-    app.use("/api/order", orderrouter);
-    app.get("/", (req, res) => {
-      res.send("Api working");
-    });
+//api endpoints
+app.use("/api/user", userrouter);
+app.use("/api/product", productroute);
+app.use("/api/cart", cartrouter);
+app.use("/api/order", orderrouter);
+app.get("/", (req, res) => {
+  res.send("Api working");
+});
 
-    app.listen(port, () => console.log("serve started on port :", port));
-  } catch (err) {
-    console.error("Failed to connect to database. Server not started.", err);
-  }
-};
-
-startserver();
+app.listen(port, () => console.log("serve started on port :", port));
+//
