@@ -111,7 +111,7 @@ const Shopcontextprovider = (props) => {
   };
 
   // Fix getcartamount to be synchronous and correct the variable name typo
-  const getcartamount = () => {
+  const getcartamount = () =>  {
     let totalamount = 0;
     for (const iteams in cartiteams) {
       let iteainfo = products.find((product) => product.id == iteams);
