@@ -2,8 +2,7 @@
 
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
 import connectdb from "./config/mongodb.js";
 import connectcloudinary from "./config/cloudinary.js";
 import userrouter from "./routes/userroute.js";
@@ -23,8 +22,10 @@ const startserver = async () => {
     //middlewares
     app.use(express.json());
     app.use(cors());
-    //CORS is a security feature implemented by browsers to restrict how resources
-    //  are shared between different origins (domain, protocol, and port)
+    //CORS is a security feature implemented by
+    //  browsers to restrict how resources
+    //  are shared between different origins
+    //  (domain, protocol, and port)
 
     //api endpoints
     app.use("/api/user", userrouter);
