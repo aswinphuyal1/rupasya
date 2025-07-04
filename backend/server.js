@@ -1,5 +1,5 @@
 //npm i cors dotenv express jsonwebtoken mongoose multer nodemon razorpay stripe validator cloudinary bcrypt
-
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
