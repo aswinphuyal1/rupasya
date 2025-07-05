@@ -9,6 +9,7 @@ const userschema = new mongoose.Schema(
     cartdata: { type: Object, default: {} },
   },
   { minimize: false }
+  //minimize false will preserved the empty object
 );
 
 const usermodel = mongoose.models.user || mongoose.model("user", userschema);

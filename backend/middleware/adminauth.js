@@ -8,7 +8,8 @@ const adminauth = async (req, res, next) => {
     }
 
     const token_decode = await jwt.verify(token, process.env.JWT_SECRET);
-    if (token_decode !== await process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
+    if (token_decode !== await process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD)
+       {
       return res.json({ success: false, message: "you are not authorizes" });
     }
     next();
@@ -18,6 +19,5 @@ const adminauth = async (req, res, next) => {
     res.json({ success: false, message: error.message });
   }
 };
-
 export default adminauth;
 //
