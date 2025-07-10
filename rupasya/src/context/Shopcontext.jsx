@@ -6,7 +6,7 @@ import { use } from "react";
 export const Shopcontext = createContext();
 const Shopcontextprovider = (props) => {
   const currency = "$";
-  const delivery_fee = 75;
+  const delivery_fee = 10;
   const backendurl = import.meta.env.VITE_BACKEND_URL;
   const [search, setsearch] = useState("");
   const [showsearch, setshowserach] = useState(false);
