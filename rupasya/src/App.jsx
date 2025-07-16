@@ -12,6 +12,7 @@ import Product from "./pages/Poduct";
 import Navbar from "./components/Navbar";
 import Fotter from "./components/Fotter";
 import Searchbar from "./components/Searchbar";
+import chat from "../src/components/chat"
 import { ToastContainer, toast } from "react-toastify";
 import Shopcontext from "./context/Shopcontext"; 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <ToastContainer />
           <Navbar />
           <Searchbar />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -32,6 +34,9 @@ const App = () => {
             <Route path="/placeorder" element={<Placeorder />} />
             <Route path="/product/:productID" element={<Product />} />
           </Routes>
+          <div>
+            <chat/>
+          </div>
           <Fotter />
         </div>
       </div>
