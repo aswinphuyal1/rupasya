@@ -93,3 +93,4 @@ const removeproduct = async (req, res) => {
 
 export { listproduct, addproduct, removeproduct, singleproduct };
 //
+//
