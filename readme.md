@@ -36,6 +36,7 @@ Rupasya is a full-stack e-commerce application built for a beauty brand. It feat
 - **Image Handling**: Multer and Cloudinary for handling image uploads.
 - **MVC Architecture**: Organized code following the Model-View-Controller pattern.
 
+
 ## Tech Stack
 
 - **Frontend**: React, Vite, Tailwind CSS, React Router, Axios
